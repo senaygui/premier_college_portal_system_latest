@@ -1,0 +1,24 @@
+<% if resource.errors.any? %>
+  <div class="card card-outline card-danger">
+    <div class="card-header">
+      <h3 class="card-title">
+        <i class="fas fa-info-circle mr-2"></i>
+        <strong>From Errors</strong>
+
+      </h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body bg-danger">
+      <p><strong><%= I18n.t("errors.messages.not_saved",count: resource.errors.count,resource: resource.class.model_name.human.downcase) %></strong></p>  
+      <p class="text-muted text-center">
+        <ol>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ol>
+      </p>
+      <hr>
+    </div>
+    <!-- /.card-body -->
+  </div>
+<% end %>

@@ -1,0 +1,154 @@
+<%provide(:title, "Home")%>
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+<style type="text/css">
+  body{
+  	background: #f0f0f0;
+  }
+  .banner{
+
+  	width: 350px;
+  	height: 200px;
+  }
+
+    h1 {
+      display: block;
+      font-size: 2em;
+      margin-block-start: 0.67em;
+      margin-block-end: 0.67em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: bold;
+  }
+  h1 {
+      letter-spacing: .5px;
+  }
+
+  body, h1, h2, h3, h4, p, button, input, select, textarea, a {
+      font-family: 'Raleway', Arial, sans-serif;
+  }
+  .icon-box {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #252525;
+    transition: 0.3s;
+    height: 120px;
+  }
+
+  .icon-box:hover {
+    background: #2b2b2b;
+  }
+
+  .icon-box i {
+    float: left;
+    color: #036696;
+    font-size: 40px;
+  }
+  .icon-box h4 {
+    margin-left: 10px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+   .icon-box h4 {
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  .icon-box h4 a:hover {
+    text-decoration: underline;
+  }
+
+  .icon-box .icon-box:hover h4 a {
+    color: #036696;
+  }
+  .icon-box p {
+    margin-left: 70px;
+    line-height: 24px;
+    font-size: 14px;
+  }
+</style>
+<div class="content mt-3">
+  <div class="container">
+    <div class="row  justify-content-center">
+      <div class="col-12 col-md-12">
+        <div class="card  card-primary">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fas fa-info-circle mr-2"></i>
+              <strong>Instruction</strong>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-5">
+            <h2 class="text-center mb-5">In What Study Level And Modality You Want To Enroll?</h2>
+            <div class="row justify-content-center">
+              <div class="col-lg-3 col-md-6">
+                <%= link_to new_student_registration_path(modality: "regular", study_level: "undergraduate"),'data-no-turbolink' => false do %>
+                  <div class="icon-box d-flex justify-content-center">
+                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
+                    <h4 class="d-flex align-items-center">
+                      Regular Degree
+                    </h4>
+                  </div>
+                <%end%>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <%= link_to new_student_registration_path(modality: "regular", study_level: "graduate"),'data-no-turbolink' => false do %>
+                  <div class="icon-box d-flex justify-content-center">
+                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
+                    <h4 class="d-flex align-items-center">
+                      Regular Masters
+                    </h4>
+                  </div>
+                <%end%>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <%= link_to new_student_registration_path(modality: "extention", study_level: "undergraduate"),'data-no-turbolink' => false do %>
+                  <div class="icon-box d-flex justify-content-center">
+                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
+                    <h4 class="d-flex align-items-center">
+                      Extension Degree
+                    </h4>
+                  </div>
+                <%end%>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <%= link_to new_student_registration_path(modality: "extention", study_level: "graduate"),'data-no-turbolink' => false do %>
+                  <div class="icon-box d-flex justify-content-center">
+                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
+                    <h4 class="d-flex align-items-center">
+                      Extension Masters
+                    </h4>
+                  </div>
+                <%end%>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <%= link_to requirements_path(modality: "online", study_level: "graduate"),'data-no-turbolink' => false do %>
+                  <div class="icon-box d-flex justify-content-center">
+                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
+                    <h4 class="d-flex align-items-center">
+                      Online Masters
+                    </h4>
+                  </div>
+                <%end%>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <%= link_to new_student_registration_path(modality: "online", study_level: "undergraduate"),'data-no-turbolink' => false do %>
+                  <div class="icon-box d-flex justify-content-center">
+                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
+                    <h4 class="d-flex align-items-center">
+                      Distance Degree
+                    </h4>
+                  </div>
+                <%end%>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

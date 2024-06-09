@@ -1,0 +1,203 @@
+<%provide(:title, "Dashboard")%>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Dashboard</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <!-- Profile Image -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">My Profile</h3>
+          </div>
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <%if current_student.photo.attached? %>
+                <%= image_tag(current_student.photo, size: '150x150', class: "profile-user-img img-fluid") if current_student.photo.attached?%>
+              <%else %>
+                <%= image_tag("blank-profile-picture-973460_640.png", size: '150x150', class: "profile-user-img img-fluid") if !current_student.photo.attached? %>
+              </div>
+            <%end%>
+            <% if current_student.allow_editing?%>
+              <div class="mx-auto mt-5 d-flex flex-column" style="width: 180px;">
+                <%= simple_form_for(current_student, url: update_profile_photo_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                  <div class="flex1">
+                    <%= f.input :photo, as: :file, label: "Edit profile",class: 'form-control form-control-sm', input_html: {onchange: "this.form.submit()"}%>
+                  </div>
+                <%end%>
+              </div>
+            <%end%>
+          </div>
+          <h1 class="profile-username text-center"><b><%= current_student.name.full.upcase%></b></h1>
+          <% unless current_student.allow_editing?%>
+            <%= link_to "Edit Profile", edit_student_registration_path, class: "btn btn-outline-primary btn-flat"%>
+          <%end%>
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item mx-3">
+              <b>Student Fullname</b> <a class="text-muted float-right"><%= current_student.name.full.upcase%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Student ID</b> <a class="text-muted float-right"><%= current_student.student_id.present? ? current_student.student_id : "Not Assigned Yet"%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Prorgam</b> <a class="text-muted float-right"><%= current_student.program.program_name%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Department</b> <a class="text-muted float-right"><%= current_student.department.department_name%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Admission Type</b> <a class="text-muted float-right"><%= current_student.admission_type%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Study Level</b> <a class="text-muted float-right"><%= current_student.study_level%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Year</b> <a class="text-muted float-right"><%= current_student.year%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Documents</b><%= link_to "click here to see the attachments", documents_path, class: "text-blue float-right"%>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Account Verification</b> <a class="float-right badge badge-info p-2 text-white"><%= current_student.account_verification_status%></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Emregncy Contact Information</h3>
+            </div>
+            <div class="card-body box-profile">
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item mx-3">
+                  <b>Full Name</b> <a class="text-muted float-right"><%= @emergency_contact.full_name%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>Relationship</b> <a class="text-muted float-right"><%= @emergency_contact.relationship%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>cell phone</b> <a class="text-muted float-right"><%= @emergency_contact.cell_phone%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>email</b> <a class="text-muted float-right"><%= @emergency_contact.email%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>Current occupation</b> <a class="text-muted float-right"><%= @emergency_contact.current_occupation%></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Emregncy Contact Employer Information</h3>
+            </div>
+            <div class="card-body box-profile">
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item mx-3">
+                  <b>Name employer</b> <a class="text-muted float-right"><%= @emergency_contact.name_of_current_employer%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>Email</b> <a class="text-muted float-right"><%= @emergency_contact.email_of_employer%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>Phone number</b> <a class="text-muted float-right"><%= @emergency_contact.office_phone_number%></a>
+                </li>
+                <li class="list-group-item mx-3">
+                  <b>Pobox</b> <a class="text-muted float-right"><%= @emergency_contact.pobox%></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Basic Information</h3>
+        </div>
+        <div class="card-body box-profile">
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item mx-3">
+              <b>Email</b> <a class="text-muted float-right"><%= current_student.email%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Gender</b> <a class="text-muted float-right"><%= current_student.gender%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Birth Date</b> <a class="text-muted float-right"><%= current_student.date_of_birth.strftime("%b %d, %Y")%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Marital Status</b> <a class="text-muted float-right"><%= current_student.marital_status%></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Address Information</h3>
+        </div>
+        <div class="card-body box-profile">
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item mx-3">
+              <b>Country</b> <a class="text-muted float-right"><%= @address.country%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>City</b> <a class="text-muted float-right"><%= @address.city%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Region</b> <a class="text-muted float-right"><%= @address.region%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Zone</b> <a class="text-muted float-right"><%= @address.zone%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Sub city</b> <a class="text-muted float-right"><%= @address.sub_city%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Woreda</b> <a class="text-muted float-right"><%= @address.woreda%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>House number</b> <a class="text-muted float-right"><%= @address.house_number%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Cell phone</b> <a class="text-muted float-right"><%= @address.moblie_number%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Telephone phone</b> <a class="text-muted float-right"><%= @address.telephone_number%></a>
+            </li>
+            <li class="list-group-item mx-3">
+              <b>Pobox</b> <a class="text-muted float-right"><%= @address.pobox%></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+</section>

@@ -1,0 +1,389 @@
+<%provide(:title, "Digital Literacy Assesement")%>
+<style type="text/css">
+  .title-header{
+    font-size: 3em;
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    text-align: center;
+  }
+  .header-text{
+    font-size: 20px;
+    font-weight: 400;
+    /*font-size: 1rem!important;*/
+    letter-spacing: .03125em!important;
+    line-height: 1.5rem;
+  }
+
+  /*@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);*/
+
+  body{
+    /*font-size: 20px;*/
+    /*font-family: 'Work Sans', sans-serif;*/
+    /*color: #333;
+    font-weight: 300;
+    text-align: center;*/
+    background-color: #f8f6f0;
+  }
+  h1{
+    font-weight: 300;
+    margin: 0px;
+    padding: 10px;
+    font-size: 20px;
+    /*background-color: #444;*/
+    /*color: #fff;*/
+  }
+  .question{
+    /*font-weight: bold;*/
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  .answers {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    display: inline-block;
+  }
+  .answers label{
+    display: block;
+    margin-bottom: 10px;
+  }
+  /*button{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 22px;
+    background-color: #279;
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  button:hover{
+    background-color: #38a;
+  }*/
+
+  .slide{
+    /*position: absolute;
+    left: 0px;
+    top: 0px;*/
+    width: 100%;
+    /*z-index: 1;*/
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .active-slide{
+    opacity: 1;
+    display: block;
+    overflow: hidden;
+    /*z-index: 2;*/
+  }
+  .quiz-container{
+    /*position: relative;*/
+    /*height: 300px;*/
+    margin-top: 10px;
+  }
+
+</style>
+<div class="container">
+  
+  
+  <div class="row">
+    <div class="col-12">
+      <h1 class="title-header mt-5 mb-2">Digital Literacy Assesement</h1>
+      <p class="text-center header-text mb-5 text-muted">
+        There are certain requirements you have to fulfill in order to be addmitted to Premier College and start Learning. Make sure that you meet the minimum requirements before starting your application process.
+      </p>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-info-circle mr-2"></i>
+            <strong>Instruction</strong>
+
+          </h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <p  class="text-center" style="font-size: 20px;"><strong>Select the appropriate answer for multiple choose questions</strong></p>  
+          <p class="text-muted text-center">
+            There are certain requirements you have to fulfill in order to be addmitted to Premier College and start Learning. Make sure that you meet the minimum requirements before starting your application process.
+          </p>
+          <hr>
+          <p class="text-muted text-center">
+           <strong> To pass this exam you need to score 6 and more than 6, so take your time and answer the question carefully.</strong>
+          </p>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+    <div class="col-12 col-md-8">
+      <div class="card card-outline card-primary">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-info-circle mr-2"></i>
+            <strong>Digital Literacy Assesement</strong>
+          </h3>
+        </div>
+        <div class="card-body mt-2">
+          <div class="quiz-container">
+            <div id="quiz"></div>
+          </div>
+          
+          <div id="results" class="mt-4"></div>
+        </div>
+        <div class="card-footer float-right mt-3">
+          <div class="float-right">
+            <button id="previous"class="btn btn-secondary">Previous Question</button>
+            <button id="next" class="btn btn-primary">Next Question</button>
+            <button id="submit" class="btn btn-primary">Submit Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  (function(){
+  // Functions
+  function buildQuiz(){
+    // variable to store the HTML output
+    const output = [];
+
+    // for each question...
+    myQuestions.forEach(
+      (currentQuestion, questionNumber) => {
+
+        // variable to store the list of possible answers
+        const answers = [];
+
+        // and for each available answer...
+        for(letter in currentQuestion.answers){
+
+          // ...add an HTML radio button
+          answers.push(
+            `<label>
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${letter} :
+              ${currentQuestion.answers[letter]}
+            </label>`
+          );
+        }
+
+        // add this question and its answers to the output
+        output.push(
+          `<div class="slide">
+            <div class="question"> ${currentQuestion.question} </div>
+            <div class="answers"> ${answers.join("")} </div>
+          </div>`
+        );
+      }
+    );
+
+    // finally combine our output list into one string of HTML and put it on the page
+    quizContainer.innerHTML = output.join('');
+  }
+
+  function showResults(){
+
+    // gather answer containers from our quiz
+    const answerContainers = quizContainer.querySelectorAll('.answers');
+
+    // keep track of user's answers
+    let numCorrect = 0;
+
+    // for each question...
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+
+      // find selected answer
+      const answerContainer = answerContainers[questionNumber];
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+      // if answer is correct
+      if(userAnswer === currentQuestion.correctAnswer){
+        // add to the number of correct answers
+        numCorrect++;
+
+        // color the answers green
+        answerContainers[questionNumber].style.color = 'lightgreen';
+      }
+      // if answer is wrong or blank
+      else{
+        // color the answers red
+        answerContainers[questionNumber].style.color = 'red';
+      }
+    });
+
+    // show number of correct answers out of total
+    resultsContainer.innerHTML = ``;
+
+    if(numCorrect >= 6){
+      resultsContainer.innerHTML = `<p class="mb-2" style="color:green;">${numCorrect} out of ${myQuestions.length}</p>
+      <p style="color:green;">Congratulations you have passed the technical knowledge requirement to enroll to Premier College's Online Program. Please continue to the registration process.</p>
+      <%= link_to "Apply Now", new_student_registration_path(modality: "online", study_level: "graduate"), class: "btn btn-primary btn-lg"%>`;
+    }
+    else{
+      resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length} <br>
+      <p style="color:red;">Sorry you don't fulfill our minimum requirement for enrolling in Premier College's online program. Please upgrade your technical abilities and try again later.</p>`;
+    }
+    
+
+
+  }
+
+  function showSlide(n) {
+    slides[currentSlide].classList.remove('active-slide');
+    slides[n].classList.add('active-slide');
+    currentSlide = n;
+    if(currentSlide === 0){
+      previousButton.style.display = 'none';
+    }
+    else{
+      previousButton.style.display = 'inline-block';
+    }
+    if(currentSlide === slides.length-1){
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'inline-block';
+    }
+    else{
+      nextButton.style.display = 'inline-block';
+      submitButton.style.display = 'none';
+    }
+  }
+
+  function showNextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function showPreviousSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  // Variables
+  const quizContainer = document.getElementById('quiz');
+  const resultsContainer = document.getElementById('results');
+  const submitButton = document.getElementById('submit');
+  const myQuestions = [
+    {
+      question: "1. What is a commonly known tool used as a video conferencing tool?",
+      answers: {
+        A: "zoom",
+        B: "Resolve",
+        C: "Youtube",
+        d: "Discord"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "2. Videoconferencing involves the use of video cameras connected to two or more computers.",
+      answers: {
+        A: "True",
+        B: "False"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "3. What does CPU stand for?",
+      answers: {
+        A: "Computer Processing Unit",
+        B: "Central Peripheral Unit",
+        C: "Central Processing Unit",
+        d: "Computer Processing User"
+      },
+      correctAnswer: "C"
+    },
+    {
+      question: "4. The main purpose of a modem in a home network is to connect your home internet connection with your internet service provider (ISP).",
+      answers: {
+        A: "False",
+        B: "True"
+      },
+      correctAnswer: "B"
+    },
+     {
+      question: "5. Let's say you want to send an e-mail message from your computer. Which of the following devices will you use to connect your computer to the Internet?",
+      answers: {
+        A: "Sound Card",
+        B: "Modem",
+        C: "Scanner",
+        D: "Printer"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "6. Which of the following allows members to post questions, start a discussion or contribute to various discussions?",
+      answers: {
+        A: "Discussion forum ",
+        B: "SMS",
+        C: "Video-conferencing ",
+        D: "VoIP"
+      },
+      correctAnswer: "A"
+    },
+    {
+      question: "7. 'Desktop' is a computer term that refers to?",
+      answers: {
+        A: "The list of all of the contents on a particular computer",
+        B: "The initial screen showing icons for folders, files, and applications",
+        C: "Something that can and should be ignored by most users",
+        D: "The part of your work area where the computer monitor sits"
+      },
+      correctAnswer: "B"
+    },
+    {
+      question: "8. When you're connected to the Internet, you are?",
+      answers: {
+        A: "Out of line",
+        B: "Offline",
+        C: "Outline",
+        D: "Online"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "9. The _____________ shows what files and applications are open?",
+      answers: {
+        A: "Start button",
+        B: "Document library",
+        C: "Shortcut menu",
+        D: "Taskbar"
+      },
+      correctAnswer: "D"
+    },
+    {
+      question: "10. You create a presentation by using PowerPoint. Which of the following toolbars will you use to add geometric shapes to the presentation?",
+      answers: {
+        A: "Reviewing",
+        B: "Illustration",
+        C: "Drawing",
+        D: "Formatting"
+      },
+      correctAnswer: "B"
+    }
+  ];
+  const myQuestionShuffled = myQuestions.sort(function() {return 0.5 - Math.random() });
+  // Kick things off
+  buildQuiz();
+
+  // Pagination
+  const previousButton = document.getElementById("previous");
+  const nextButton = document.getElementById("next");
+  const slides = document.querySelectorAll(".slide");
+  let currentSlide = 0;
+
+  // Show the first slide
+  showSlide(currentSlide);
+
+  // Event listeners
+  submitButton.addEventListener('click', showResults);
+  previousButton.addEventListener("click", showPreviousSlide);
+  nextButton.addEventListener("click", showNextSlide);
+})();
+
+</script>

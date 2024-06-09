@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program: one
+  Curriculum: one
+  min_cgpa_valut_to_pass: 9.99
+  min_cgpa_value_to_graduate: 
+
+two:
+  program: two
+  Curriculum: two
+  min_cgpa_valut_to_pass: 9.99
+  min_cgpa_value_to_graduate: 

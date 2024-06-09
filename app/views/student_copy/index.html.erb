@@ -1,0 +1,26 @@
+<div class="filter-container">
+  <h3 class="text-center text-bold text-underline">A student copy preparation form</h3>
+  <%= form_tag(generate_student_copy_path(format: 'pdf'), method: 'post', class: 'search-form') do |form|%>
+    <br>
+    <div class="filed">
+      <label>Departement Name: </label>
+      <%= collection_select(:department, :name, @department, :id, :department_name, prompt: true, required: true) %>
+    </div>
+    <div class="filed">
+      <label>Graduation Year: </label>
+      <%= collection_select(:year, :name, @year, :graduation_year, Proc.new {|c| "#{c.graduation_year}"},  prompt: true, required: true) %>
+    </div>
+    <div class="filed">
+      <label>Graduation Date: </label>
+      <%= date_field :gc, :date, class: 'form-controvl', required: true %>
+    </div>
+    <div class="text-center pt-2">
+      <input type="submit" value="Generate Tempo", class="btn btn-success">
+    </div>
+  <% end %>
+  <% if alert.present?%>
+    <div class="alert alert-warning text-center" role="alert">
+      <%=alert%>
+    </div>
+  <%end%>
+</div>

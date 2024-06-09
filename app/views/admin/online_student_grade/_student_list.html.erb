@@ -1,0 +1,59 @@
+<div class="panel_contents">
+  <form method="post" id="q_search" class="filter_form" action="/approve/online/student/grade" accept-charset="UTF-8">
+    <div class="filter_form_field">
+      <label for="online-student-department" class="label">Select Department:</label>
+      <select name="department" id="online-student-department" required class="form-select form-select-lg mb-3">
+        <option value=""> Select Department</option>
+        <% FilterDepartment.get_online_department.each do |student|%>
+          <option value="<%=student.department_id%>"> <%=student.department.department_name%></option>
+        <%end%>
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="student-year" class="label">Select Year:</label>
+      <select name="year" id="online-student-year" required class="form-select form-select-lg mb-3">
+        <option value="">Select year</option>
+        <option value="1">Year 1</option>
+        <option value="2">Year 2</option>
+        <option value="3">Year 3</option>
+      </select>
+    </div>
+      <div class="filter_form_field">
+      <label for="student-year" class="label">Select Approval Status:</label>
+      <select name="status" id="online-student-status" required class="form-select form-select-lg mb-3">
+        <option value="">Select year</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="student-semester" class="label">Select Semester:</label>
+      <select name="semester" id="online-student-semester" required class="form-select form-select-lg mb-3">
+        <option value=""> Select Semester</option>
+        <option value="1"> Semester 1</option>
+        <option value="2">Semester 2</option>
+      </select>
+    </div>
+    <%# <button type="submit" disabled>Click Mssse!</button> %>
+    <input type="submit" value="Approve Grade" name="approve" id="approve" />
+
+  </form>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name </th>
+          <th>Year </th>
+          <th>Semester</th>
+          <th>Letter Grade</th>
+          <th>Assesment Total</th>
+          <th>Grade Point </th>
+          <th>Course Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="online-student-list">
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  semester_registration: one
+  cgpa: 
+  sgpa: 
+  semester: 1
+  year: 1
+
+two:
+  semester_registration: two
+  cgpa: 
+  sgpa: 
+  semester: 1
+  year: 1

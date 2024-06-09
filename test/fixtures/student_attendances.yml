@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  session: one
+  student: one
+  course_registration: one
+  present: false
+  absent: false
+  remark: MyString
+  created_by: MyString
+  updated_by: MyString
+
+two:
+  session: two
+  student: two
+  course_registration: two
+  present: false
+  absent: false
+  remark: MyString
+  created_by: MyString
+  updated_by: MyString

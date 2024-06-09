@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  add_and_drop: one
+  course: one
+
+two:
+  add_and_drop: two
+  course: two

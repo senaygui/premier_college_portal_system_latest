@@ -1,0 +1,6 @@
+form action: pdf_gread_report_path, format: 'pdf' do | f |
+f.input :gender, as: :select, collection: %w[Male Female], include_blank: false
+
+ f.input :name, class: 'input', type: 'text'
+ f.input :create, type: "submit"
+end

@@ -1,0 +1,20 @@
+<tr class="form-table__row">
+  <td class="form-table__col">
+    <% r.input(:student_full_name, as: :string, label: false, :input_html => { :disabled => true }  , wrapper_html: { tag: false }) %>
+  </td>
+  <td class="form-table__col">
+    <% r.input :present, as: :boolean, label: '', wrapper_html: { tag: false } %>
+  </td>
+  <td class="form-table__col">
+    <% r.input :absent, as: :boolean, label: '', wrapper_html: { tag: false } %>
+  </td>
+  <td class="form-table__col">
+    <% r.input(:remark, as: :string, label: false, wrapper_html: { tag: false }) %>
+  </td>
+  <td class="form-table__col">
+    <% r.input :id, as: :hidden, label: '', wrapper_html: { tag: false } %>
+    <% if !(current_admin_user.role == "instractor")%>
+      <% r.input :_destroy, as: :boolean, label: '', wrapper_html: { tag: false } %>
+    <%end%>
+  </td>
+</tr>

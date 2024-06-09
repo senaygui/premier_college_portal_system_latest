@@ -1,0 +1,2 @@
+class GradeRule < ApplicationRecord
+end

@@ -1,0 +1,49 @@
+
+<div class="filter-container">
+ <h3 class="text-center text-bold text-underline">A student temporary preparation form</h3>
+
+ <%= form_tag(generate_student_tempo_path(format: 'pdf'), method: 'post', class: 'search-form') do |form|%>
+    <br>
+    <div class="filed">
+        <label>Program Name: </label>
+        <%= collection_select(:program, :name, @program, :id, :program_name,  {prompt: 'Select a Department'}, required: true) %> 
+    </div>
+<div class="filed">
+        <label>Degree Type: </label>
+        <select name="degree" id="degree" required="true">
+        <option value="">Select degree type</option>
+        <option value="Bachelor of Science">Bachelor of Science </option>
+        <option value="Bachelor of Art">Bachelor of Art</option>
+        <option value="Bachelor of Education">Bachelor of Education </option>
+        <option value="Master's of Science">Master's of Science</option>
+        <option value="Master's of Art">Master's of Art</option>
+        <option value="Doctor of Medicine">Doctor of Medicine</option>
+        </select>
+</div>
+
+<div class="filed">
+        <label>Study Level: </label>
+        <select name="study" id="study" required="true">
+        <option value="">Select study level</option>
+        <option value="undergraduate"> Undergraduate </option>
+        <option value="graduate"> Graduate </option>
+        </select>
+</div>
+
+<div class="filed">
+<label>Graduation Date: </label>
+    <%= date_field :gc, :date, class: 'form-controvl', required: true %>
+
+</div>
+
+    <div class="text-center pt-2">
+      <input type="submit" value="Generate Tempo", class="btn btn-success">
+    </div>
+  <% end %>
+
+<% if alert.present?%>
+<div class="alert alert-warning text-center" role="alert">
+<%=alert%>
+</div>
+<%end%> 
+</div>

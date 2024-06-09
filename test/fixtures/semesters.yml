@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  academic_calendar: one
+  starting_date: 
+  semester: 1
+
+two:
+  academic_calendar: two
+  starting_date: 
+  semester: 1

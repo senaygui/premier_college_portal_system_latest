@@ -1,0 +1,23 @@
+<% context.instance_eval do
+	div class: "wrapper-r" do
+		div class: "fream" do
+			div do
+				image_tag(almuni.photo, class: "photo-av") if almuni.photo.attached?
+			end
+			span class: "fullname" do
+				almuni.fullname
+			end
+			div class: "program" do
+				almuni.program_name
+			end
+			span class: "date" do
+				if almuni.graduation_date.present?
+					"On #{almuni.graduation_date.strftime("%B %d, %Y")}"
+				end
+			end
+			div class: "qrcode" do
+				image_tag(almuni.qr_code) if almuni.qr_code.attached?
+			end
+		end
+	end
+end %>

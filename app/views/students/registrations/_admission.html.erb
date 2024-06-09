@@ -1,0 +1,7 @@
+<div class="row">
+  <%= f.input :study_level, as: :hidden, :input_html => { :value => params[:study_level]}%>
+	<%= f.input :admission_type, as: :hidden, :input_html => { :value => params[:modality]}%>
+  <div class="col-12 col-md-6">
+    <%= f.input :program_id, as: :radio_buttons, :collection => Program.where(study_level:  params[:study_level],admission_type: params[:modality]).pluck(:program_name, :id), label: "Select the program you want to enroll"%>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+
+<div class="filter-container">
+ <%= form_tag(prepare_pdf_path(format: 'pdf'), method: 'post', class: 'search-form') do |form|%>
+    <br>
+    <div class="filed">
+        <label>Departement Name: </label>
+        <%= collection_select(:department, :name, @department, :id, :department_name,  {prompt: 'Select a Department'}, required: true) %> 
+    </div>
+     <div class="filed">
+        <label>Year: </label>
+        <%= collection_select(:student, :year, Student.select(:year).distinct, :year, :year, {prompt: 'Select a Year'},required: true) %> 
+    </div>
+    <!--<div class="filed">
+        <label>Section: </label>
+        <%= collection_select(:section, :id, Section.select(:id, :section_full_name).distinct, :id, :section_full_name,{prompt: 'Select a Section'},required: true) %> 
+    </div> -->
+
+    <div class="filed">
+        <label>Semester: </label>
+
+    <select name="semester" id="semester" required>
+  <option value="">Select a Semester</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+
+</select>
+    </div>
+    <br/>
+    <div class="text-center">
+     
+      <input type="submit" value="Generate Report", class="btn btn-success">
+      </div>
+  <% end %>
+
+<% if alert.present?%>
+<div class="alert alert-warning" role="alert">
+<%=alert%>
+</div>
+<%end%> 
+</div>

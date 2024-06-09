@@ -1,0 +1,9 @@
+ form action: "report/foo", method: :post do |f|
+      div do
+      f.input :my_field, type: :text, name: 'my_field'
+      end
+      f.input :title, type: :text
+      f.input :name => :table, :collection => { "Display" => "id" }
+      f.input :authenticity_token, type: :hidden, name: :authenticity_token, value: form_authenticity_token
+      f.input :submit, type: :submit, value: "Generate PDF Report"
+  end

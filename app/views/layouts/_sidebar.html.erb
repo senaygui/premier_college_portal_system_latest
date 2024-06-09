@@ -1,0 +1,122 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  
+    <%= link_to image_tag("premier.jpg", size: "142.203x55", alt: "logo"), root_path, class: "brand-link"%>
+  
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <%= image_tag(current_student.photo, size: '160x160', class: "img-circle elevation-2", alt: "User Image") if current_student.photo.attached?%>
+      <%= image_tag("blank-profile-picture-973460_640.png", size: '160x160', class: "img-circle elevation-2") if !current_student.photo.attached?%>
+    </div>
+    <div class="info">
+      <a href="#" class="d-block"><%= current_student.name.full%></a>
+    </div>
+      </div>    
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="/" class="nav-link <%= current_class?(root_path) %>">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <%= link_to semester_registrations_path, :class => "nav-link #{current_class?(semester_registrations_path)}" do %>
+              <i class="nav-icon fas fa-sign-in-alt"></i>
+              <p>
+                Registrations
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to invoices_path, class: "nav-link #{current_class?(invoices_path)}" do %>
+              <i class="nav-icon fas fa-file-invoice"></i>
+              <p>
+                Payments
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to profile_path, class: "nav-link  #{current_class?(profile_path)}" do %>
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Profile
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to grade_reports_path, class: "nav-link #{current_class?(grade_reports_path)}" do %>
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Grade Report
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to documents_path, class: "nav-link #{current_class?(documents_path)}" do %>
+              <i class="nav-icon fas fa-file-word"></i>
+              <p>
+                Documents
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to academic_calendars_path, class: "nav-link #{current_class?(academic_calendars_path)}" do %>
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Academic Calendar
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            <%end%>
+          </li>
+          
+          <li class="nav-header"></li>
+          <!-- <li class="nav-item">
+            <a href="pages/calendar.html" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Calendar
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <%= link_to destroy_student_session_path, method: :delete, class: "nav-link" do%>
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            <%end%>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

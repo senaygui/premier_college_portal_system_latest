@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  program: one
+  section: one
+  department: one
+  academic_calendar: one
+
+two:
+  student: two
+  program: two
+  section: two
+  department: two
+  academic_calendar: two

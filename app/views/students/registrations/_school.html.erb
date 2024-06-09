@@ -1,0 +1,57 @@
+<%= f.simple_fields_for :school_or_university_information, SchoolOrUniversityInformation.new do |a|%>
+ 
+  <!-- <div class="row">
+     <div class="col-12 col-md-6 form-group">
+      <%= a.input :last_attended_high_school, input_html: { class: 'form-control', autofocus: true, autocomplete: "last_attended_high_school" },placeholder: "Last Attended High School", required: true%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :school_address, input_html: { class: 'form-control', autocomplete: "school_address" },placeholder: "School Address"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :grade_10_result,as: :decimal, input_html: { class: 'form-control', autocomplete: "grade_10_result", id: "tenresult"},placeholder: "Grade 10 Matric Result", label: "Grade 10 Matric Result"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.label :grade_10_exam_taken_year%>
+      <%= a.date_field :grade_10_exam_taken_year,class: 'form-control datepicker'%>
+      <%= a.hint "select year in Gregorian calendar"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :grade_12_exam_result, as: :decimal, input_html: { class: 'form-control', autocomplete: "grade_12_exam_result" },placeholder: "Grade 12 Matric Result", label: "Grade 12 Matric Result"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.label :grade_12_exam_taken_year%>
+      <%= a.date_field :grade_12_exam_taken_year,class: 'form-control datepicker'%>
+      <%= a.hint "select year in Gregorian calendar"%>
+    </div> 
+  </div> -->
+
+  <%if params[:study_level] == "graduate"%>
+    <div class="card card-outline card-primary">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-info-circle mr-2"></i>
+          <strong>College Or University Information</strong>
+        </h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <%= a.input :college_or_university, input_html: { class: 'form-control', autocomplete: "college_or_university", required: true, id: "college"},placeholder: "College Or University", required: true%>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <%= a.input :phone_number, input_html: { class: 'form-control', id: "collegephone"},placeholder: "Phone Number"%>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <%= a.input :address, input_html: { class: 'form-control', autocomplete: "address" },placeholder: "Address"%>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <%= a.input :field_of_specialization, input_html: { class: 'form-control', autocomplete: "field_of_specialization", id: "collegefield" },placeholder: "Field Of Specialization", required: true%>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <%= a.input :cgpa, input_html: { class: 'form-control', autocomplete: "cgpa", id: "collegecgpa" },placeholder: "CGPA", required: true%>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<%end%>

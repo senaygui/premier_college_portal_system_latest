@@ -1,0 +1,163 @@
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card card card-primary">
+					<div class="card-header">
+						<h3 class="card-title">
+							<i class="fas fa-edit"></i>
+							Payment Form
+						</h3>
+					</div>
+					<div class="card-body p-0">
+						<div class="bs-stepper">
+							<div class="bs-stepper-header" role="tablist">
+								<!-- your steps here -->
+								<div class="step" data-target="#bi">
+									<button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="bi-trigger">
+										<span class="bs-stepper-circle">1</span>
+										<span class="bs-stepper-label">Payment Transfer Detail</span>
+									</button>
+								</div>
+								<div class="line"></div>
+								<div class="step" data-target="#admission">
+									<button type="button" class="step-trigger" role="tab" aria-controls="admission" id="admission-trigger">
+										<span class="bs-stepper-circle">2</span>
+										<span class="bs-stepper-label">Payment Form</span>
+									</button>
+								</div>
+							</div>
+							
+							<%= simple_form_for(@payment_transaction, local: true) do |f| %>
+							  <%= f.error_notification %>
+							  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+							  <%=f.input :invoiceable_type, as: :hidden, :input_html => { :value => "Invoice"}%>
+							  <%=f.input :invoiceable_id, as: :hidden, :input_html => { :value => params[:invoice_id]}%>
+                  <%=f.input :payment_method_id, as: :hidden, :input_html => { :value => params[:payment_method_id]}%>
+								<div class="bs-stepper-content">
+									<!-- your steps content here -->
+									<div id="bi" class="content" role="tabpanel" aria-labelledby="bi-trigger">
+										<div class="row">
+											<div class="col-12 col-md-4">
+												<div class="card card-outline card-primary">
+													<div class="card-header">
+														<h3 class="card-title">
+															<i class="fas fa-info-circle mr-2"></i>
+															<strong>Instruction</strong>
+
+														</h3>
+													</div>
+													<!-- /.card-header -->
+													<div class="card-body">
+														<p  class="text-center"><strong>Please, transfer <%=(@invoice.total_price + @invoice.registration_fee) if @invoice.present?%> ETB to the account we provide you and fill the form with in your bank information.</strong></p>   
+														<hr>
+													</div>
+													<!-- /.card-body -->
+												</div>
+											</div>
+
+											<%if PaymentMethod.find_by(id: params[:payment_method_id]).present?%>
+											<div class="col-12 col-md-8">
+												<div class="card card-primary card-outline">
+						              <div class="card-body box-profile">
+						                <div class="text-center">
+						                	
+						                  	<%= image_tag(@payment_method.bank_logo, class: "profile-user-img img-fluid")%>
+						                  
+						                </div>
+
+						                <h3 class="profile-username text-center"><%= @payment_method.bank_name%></h3>
+
+						                <p class="text-muted text-center"><%= @payment_method.payment_method_type%></p>
+
+						                <ul class="list-group list-group-unbordered mb-3">
+								              <li class="list-group-item mx-3">
+								                <b>Account Name</b> <a class="text-muted float-right"><%= @payment_method.account_full_name%></a>
+								              </li>
+								              <li class="list-group-item mx-3">
+								                <b>Account Number</b> <a class="text-muted float-right"><%= @payment_method.account_number%></a>
+								              </li>
+								              <li class="list-group-item mx-3">
+								                <b>Bank Name</b> <a class="text-muted float-right"><%= @payment_method.bank_name%></a>
+								              </li>
+								              <li class="list-group-item mx-3">
+								                <b>Phone Number</b> <a class="text-muted float-right"><%= @payment_method.phone_number%></a>
+								              </li>
+								            </ul>
+						                <a class="btn btn-primary btn-block" onclick="stepper.next()">Continue</a>
+						              </div>
+						              <!-- /.card-body -->
+						            </div>
+												
+											</div>
+											<%end%>
+											
+										</div>
+									</div>
+									<div id="admission" class="content" role="tabpanel" aria-labelledby="admission-trigger">
+										<div class="row">
+											<div class="col-12 col-md-3">
+												<div class="card card-outline card-primary">
+													<div class="card-header">
+														<h3 class="card-title">
+															<i class="fas fa-info-circle mr-2"></i>
+															<strong>Instruction</strong>
+
+														</h3>
+													</div>
+													<!-- /.card-header -->
+													<div class="card-body">
+														<p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>  
+														<p class="text-muted text-center">
+															You must provide your address information on the fields provided. Once you fill all the required feilds hit the Continue button.
+														</p>
+														<hr>
+													</div>
+													<!-- /.card-body -->
+												</div>
+											</div>
+											<div class="col-12 col-md-9">
+												<div class="card card-outline card-primary">
+													<div class="card-header">
+														<h3 class="card-title">
+															<i class="fas fa-info-circle mr-2"></i>
+															<strong>Payment Form</strong>
+														</h3>
+													</div>
+													<div class="card-body row">
+														<div class="col-12 col-md-6 form-group">
+												      <%= f.input :account_holder_fullname, input_html: { class: 'form-control', autofocus: true, autocomplete: "account_holder_fullname", id: "accountfullname" },placeholder: "Account holder f ullname", required: true %>
+												    </div>
+												    <div class="col-12 col-md-6 form-group">
+												      <%= f.input :account_number, input_html: { class: 'form-control', autocomplete: "account_number", id: "accountnumber" },placeholder: "Account number", required: true %>
+												    </div>
+												    <div class="col-12 col-md-6 form-group">
+												      <%= f.input :phone_number, input_html: { class: 'form-control', autocomplete: "phone_number", id: "accountphone" },placeholder: "Phone number", required: true %>
+												    </div>
+												    <div class="col-12 col-md-6 form-group">
+												      <%= f.input :transaction_reference, input_html: { class: 'form-control', autocomplete: "transaction_reference", id: "accountreference" },placeholder: "Transaction Reference", required: true %>
+												    </div>
+												    <div class="col-12 col-md-6 form-group">
+												      <%= f.input :receipt_image, as: :file, required: true %>
+												    </div>
+													</div>
+													<div class="card-footer">
+														<a class="btn btn-secondary" onclick="stepper.previous()">Previous</a>
+														<%= f.submit "Finish", class: "btn btn-primary btn-user" %>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							<% end %>
+						</div>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+	</div>
+</div>
+

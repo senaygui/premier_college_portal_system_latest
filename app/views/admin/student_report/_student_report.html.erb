@@ -1,0 +1,73 @@
+<div class="panel_contents">
+  <form method="post" id="q_search" class="filter_form" action="/student/pdf/report.pdf" accept-charset="UTF-8">
+    <div class="filter_form_field filter_string">
+      <label for="graduation-status" class="label">Select Graduation Status:</label>
+      <select name="graduation_status" id="graduation-status" required="true" class="form-select form-select-lg mb-3">
+        <option value=""></option>
+        <option value="pending">Non-GC Student</option>
+        <option value="approved">GC Student</option>
+      </select>
+    </div>
+      <div class="gc-year-container filter_form_field">
+      <label for="gc-year" class="label">Select Graduation Year:</label>
+      <select name="gc_year" id="gc-year"  class="form-select form-select-lg mb-3">
+        <option value="" selected>Select GC Year</option>
+      </select>
+    </div>
+
+    <div class="filter_form_field">
+      <label for="student-report-program" class="label">Select Program:</label>
+      <select name="report_program" id="student-report-program" required class="form-select form-select-lg mb-3">
+        <option value="" selected>Select Program</option>
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="student-report-year" class="label">Select Year:</label>
+      <select name="report_year" id="student-report-year" readonly="true" class="form-select form-select-lg mb-3">
+        <option value="" selected>Select year</option>
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="student-report-semester" class="label">Select Semester:</label>
+      <select name="report_semester" id="student-report-semester" class="form-select form-select-lg mb-3">
+        <option value="">Select Semester</option>
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="study-report-level" class="label">Study Level:</label>
+      <select name="study_report_level" id="study-report-level" required class="form-select form-select-lg mb-3">
+        <option value=""></option>
+        <option value="undergraduate">Undergraduate Student</option>
+        <option value="graduate">Graduate Student</option>
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="admission-report-type" class="label">Admission Type:</label>
+      <select name="admission_report_type" id="admission-report-type" required class="form-select form-select-lg mb-3">
+        <option value=""></option>
+        <option value="online">Online Student</option>
+        <option value="regular" >Regular Student</option>
+        <option value="extention">Extention Student </option>
+      </select>
+    </div>
+    <input type="submit" value="Generate Report" name="commit" id="q_submit" />
+  </form>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID </th>
+          <th>Student Name </th>
+          <th>Year </th>
+          <th>Semester</th>
+          <th>Sex</th>
+          <th>Birth Date</th>
+          <th>Study Level </th>
+          <th>Admission Type</th>
+        </tr>
+      </thead>
+      <tbody id="payment-report-student-list">
+      </tbody>
+    </table>
+  </div>
+</div>

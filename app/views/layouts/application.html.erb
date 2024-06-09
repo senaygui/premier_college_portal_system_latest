@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portal System | <%= yield(:title)%></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  </head>
+
+  <%if !student_signed_in?%>
+    <body class="hold-transition control-sidebar-slide-open sidebar-collapse">
+      <div class="wrapper">
+        <%= render 'layouts/registration_navbar' unless @disable_nav%> 
+        <%= yield %>
+      </div>
+    </body>
+  <%elsif student_signed_in?%>
+    <%if !(params[:update_pwd] == "update_pwd")%>
+    <body class="hold-transition sidebar-mini layout-fixed <%= yield(:side)%>">
+      <div class="wrapper">
+        <%= render 'layouts/navbar'%>
+        <%= render 'layouts/sidebar'%>
+        <div class="content-wrapper">
+          <%= yield %>
+        </div>
+      </div>
+    </body>
+    <%else%>
+      <body class="hold-transition control-sidebar-slide-open sidebar-collapse">
+        <div class="wrapper">
+          <div class="content-wrapper">
+            <%= yield %>
+          </div>
+        </div>
+      </body>
+    <%end%>
+  <%else%>
+    <body>
+      <%= yield %>
+    </body>
+    
+  <%end%>
+<!--   <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script> -->
+</html>

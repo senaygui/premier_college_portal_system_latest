@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+body {
+	font-family: "Montserrat", sans-serif;
+	margin: 0;
+	color: #000;
+	background-color: #fff;
+	width: 595px !important;
+	height: 842px !important;
+}
+header, footer, aside, nav, form, iframe,table,.title_bar,.header,.page_title, .panel,.menu {
+	display: none !important;
+}
+
+
+.wrapper-r{
+	position: relative !important;
+	width: 595px !important;
+	height: 842px !important;
+
+	background: #FFFFFF !important;
+}
+.fream{
+	position: absolute !important;
+	width: 596px !important;
+	height: 842px !important;
+	left: -2px !important;
+	top: 0px !important;
+	background: url(asset_path('a43.jpg')) !important;
+	background-position: center;
+	background-size: cover;
+}
+.photo-av{
+	position: absolute !important;
+	width: 94px !important;
+	height: 96px !important;
+	left: 73px !important;
+	top: 259px !important;
+	/*background: url('photo_2019-09-28_22-41-16.jpg') !important;*/
+	background-position: center !important;
+	background-size: cover !important;
+}
+.fullname{
+	font-family: "Montserrat", sans-serif !important;
+	position: absolute !important;
+	width: 360px !important;
+	height: 36px !important;
+	left: 198px !important;
+	top: 310px !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-size: 20px !important;
+	line-height: 30px !important;
+	font-weight: bold !important;
+	display: flex !important;
+	align-items: center !important;
+	text-align: center !important;
+	color: #000000 !important;
+}
+.program{
+	position: absolute;
+	width: 410px;
+	height: 45px;
+	left: 100px;
+	top: 429px;
+	margin-top: 10px;
+	// font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 29px;
+	/*display: flex;
+	align-items: center;*/
+	text-align: center;
+
+	color: #000000;
+
+}
+.date{
+	position: absolute;
+	width: 268px;
+	height: 45px;
+	left: 164px;
+	top: 480px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 29px;
+	display: flex;
+	align-items: center;
+
+	color: #6A6868;
+}
+.qrcode{
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	left: 57px;
+	top: 620px;
+	border-top: 10px;
+	background: #C4C4C4;
+}
+#active_admin_content {
+	border: 0px;
+    clear: both;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+#main_content{
+margin: 0px;
+padding: 0px;
+}

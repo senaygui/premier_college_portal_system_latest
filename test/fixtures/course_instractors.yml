@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admin_user: one
+  course: one
+  semester: 1
+  academic_calendar: one
+  course_section: 
+
+two:
+  admin_user: two
+  course: two
+  semester: 1
+  academic_calendar: two
+  course_section: 

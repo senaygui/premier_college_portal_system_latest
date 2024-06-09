@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program: one
+  course: one
+  semester: 1
+  course_starting_date: 2021-07-06 09:00:27
+  course_ending_date: 2021-07-06 09:00:27
+  year: 1
+  credit_hour: 1
+  ects: 1
+
+two:
+  program: two
+  course: two
+  semester: 1
+  course_starting_date: 2021-07-06 09:00:27
+  course_ending_date: 2021-07-06 09:00:27
+  year: 1
+  credit_hour: 1
+  ects: 1

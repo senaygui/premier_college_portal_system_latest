@@ -1,0 +1,83 @@
+<style type="text/css">
+  input[type=file]{
+  padding-bottom: 45px;
+  /*margin-left: 10px;*/
+  }
+  input::file-selector-button {
+      align-items: center;
+      background-clip: padding-box;
+      background-color: #036696;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 1.25;
+      margin: 0;
+      min-height: 2.5rem;
+      padding: 0px calc(1.3rem - 1px);
+      position: relative;
+      text-decoration: none;
+      transition: all 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      width: auto;
+    }
+</style>
+<div class="row">
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :first_name, input_html: { class: 'cap form-control', autofocus: true, autocomplete: "first_name", id: "firstName"},placeholder: "First Name", required: true, error: 'Username is mandatory, please specify one' %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :middle_name, input_html: { class: 'cap form-control', autocomplete: "middle_name", id: "middleName" },placeholder: "middleName", label: "Middle Name (Father name)", required: true %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :last_name, input_html: { class: 'cap form-control', autocomplete: "Last Name", id: "lastName" },placeholder: "lastName", label: "Last name (Grandfather name)", required: true %>
+    </div>
+    
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :gender,:as => :select, :collection => ["Male", "Female"], input_html: {class: "form-control custom-select rounded-0"}, :include_blank => false %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.label :date_of_birth%>
+      <%= f.date_field :date_of_birth,class: 'form-control birthdate'%>
+      <%= f.hint "when you pick your birth date select GC"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :nationality, as: :country, selected: 'ET', priority_countries: ["ET", "US"], input_html: {class: "form-control custom-select"},include_blank: "select nationality"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :place_of_birth, input_html: { class: 'form-control', autocomplete: "place_of_birth" },placeholder: "Place of birth", label: "Place of birth", required: true %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :marital_status, as: :select, :collection => ["Single", "Married", "Widowed","Separated","Divorced"], input_html: {class: "form-control custom-select rounded-0"}, :include_blank => false %>
+    </div>
+    <%if params[:study_level] == "graduate"%>
+      <div class="col-12 col-md-6 form-group">
+        <%= f.input :current_occupation, input_html: { class: 'form-control', autocomplete: "current_occupation" },placeholder: "Current occupation"%>
+      </div>
+    <%end%>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :email, input_html: { class: 'form-control', autocomplete: "email" },placeholder: "Email", required: true %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :password, input_html: { class: 'form-control', autocomplete: "password" },placeholder: "Password", required: true %>
+      <%= f.hint "must be between 5 to 20 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :password_confirmation, input_html: { class: 'form-control', autocomplete: "password_confirmation" },placeholder: "Password confirmation", required: true %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.label :photo , "Upload Photo *" %>
+      <%= f.file_field :photo,class: 'form-control'%>
+    </div>
+  </div>
+

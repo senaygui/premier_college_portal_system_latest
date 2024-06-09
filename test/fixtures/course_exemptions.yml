@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  letter_grade: MyString
+  course_taken: MyString
+  course: one
+  exemption_approval: MyString
+
+two:
+  letter_grade: MyString
+  course_taken: MyString
+  course: two
+  exemption_approval: MyString

@@ -1,0 +1,47 @@
+<%provide(:title, "Payment Method Selection")%>
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Payment Method Selection</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/">Invoices</a></li>
+          <li class="breadcrumb-item active">Payment Methods</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="card card-primary bg-light">
+          <div class="card-header">
+            <h3 class="card-title">Select payment Methods</h3>
+          </div>
+          <div class="card-body row">
+            <% @payment_methods.each do |payment|%>
+              <div class="col-md-3 col-sm-6 col-12">
+                <%= link_to({controller: "payment_transactions", action: "new", invoice_id: params[:invoice_id], payment_method_id: payment.id} ) do%>
+                  <div class="card" style="width: 15rem;">
+                    <%= image_tag(payment.bank_logo, class: "card-img-top")%>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item  text-center active"><strong> <%= payment.bank_name%></strong></li>
+                    </ul>
+                  </div>
+                <%end%>
+                <!-- /.info-box -->
+              </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

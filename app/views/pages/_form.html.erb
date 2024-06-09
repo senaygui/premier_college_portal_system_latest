@@ -1,0 +1,7 @@
+<%= simple_form_for(@semester_registration) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-actions">
+    <%= f.submit "Next", class: "btn btn-primary btn-user" %>
+  </div>
+<% end %>

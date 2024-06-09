@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  study_level: MyString
+  admission_type: MyString
+  student_nationality: MyString
+
+two:
+  study_level: MyString
+  admission_type: MyString
+  student_nationality: MyString

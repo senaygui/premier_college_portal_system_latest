@@ -1,0 +1,39 @@
+
+<div class="filter-container">
+ <h3 class="text-center text-bold text-underline">Student Graduation status approval form</h3>
+
+ <%= form_tag(graduation_approval_path, method: 'get', class: 'search-form') do |form|%>
+    <br>
+    <div class="filed">
+        <label>Program Name: </label>
+        <%= collection_select(:program, :name, @program, :id, :program_name,  {prompt: 'Select a Department'}, required: true) %> 
+    </div>
+
+<div class="filed">
+        <label>Study Level: </label>
+      <select name="study" id="study" required="true">
+        <option value="">Select study level</option>
+        <option value="undergraduate"> Undergraduate </option>
+        <option value="graduate"> Graduate </option>
+      </select>
+ </div>
+    <div class="text-center">
+      <input type="submit" value="Search student", class="btn btn-success">
+    </div>
+  <% end %>
+
+<% if alert.present?%>
+<div class="alert alert-warning" role="alert">
+<%=alert%>
+</div>
+<%end%>
+<%if success.present?%>
+ <div class="alert alert-success text-center" role="alert">
+  <p><%= success %> </p>
+</div>
+      <%# <input type="button" value="Search student", class="btn btn-success"> %>
+      <%= link_to "Approve #{session[:student_ids].size} student for graduation", approved_path,  class: 'btn btn-success', data: { confirm: "Are you sure you want to approve the 
+                    selected (#{session[:student_ids].size}) student?"}%>
+
+<%end%> 
+</div>

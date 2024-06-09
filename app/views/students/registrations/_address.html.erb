@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+
+<style type="text/css">
+  .iti {
+    display: block;
+}
+</style>
+<%= f.fields_for :student_address do |a|%>
+  <div class="row">
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :country, as: :country, selected: 'ET', priority_countries: ["ET", "US"], input_html: {class: "form-control custom-select"},include_blank: "select country"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :city, input_html: { class: 'form-control', autofocus: true, autocomplete: "city", id: "city"},placeholder: "City", required: true, error: 'city is mandatory, please specify one' %>
+    </div>
+    
+    
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :sub_city, input_html: { class: 'form-control', autocomplete: "sub_city" },placeholder: "Sub city"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :region, as: :select, :collection => ["Addis Ababa", "Afar", "Amahara","Benishangul Gumuz","Dire Dawa","Gambela","Harari","Oromia","Somali","Tigray","Sidama","Southern Nations Nationalities and People", "Southern West Nation"], input_html: { class: 'form-control' },placeholder: "Region"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :zone, input_html: { class: 'form-control', autocomplete: "zone" },placeholder: "Zone"%>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :woreda, input_html: { class: 'form-control', autocomplete: "woreda" },placeholder: "Woreda" %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :special_location, input_html: { class: 'form-control', autocomplete: "special_location" },placeholder: "Special Location" %>
+      <%= a.hint "if you are a foreigner state your address here and for Ethiopian students with new loaction" %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :house_number, input_html: { class: 'form-control', autocomplete: "house_number" },placeholder: "House Number" %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :moblie_number, input_html: { class: 'form-control', autocomplete: "moblie_number", id: "addressmobile" }, required: true %>
+      <span id="valid-msg" class="hide"></span>
+      <span id="error-msg" class="hide"></span>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :telephone_number, input_html: { class: 'form-control', autocomplete: "telephone_number" }, label: "Alternative Phone Number"%>
+      <span id="valid-msg-alt" class="hide"></span>
+      <span id="error-msg-alt" class="hide"></span>
+    </div>
+  </div>
+<%end%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<script >
+
+  var phoneNumber = document.querySelector("#student_student_address_attributes_moblie_number"),
+  errorMsg = document.querySelector("#error-msg"),
+  validMsg = document.querySelector("#valid-msg");
+  // here, the index maps to the error code returned from getValidationError - see readme
+  // var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+  // initialise plugin
+  var iti = window.intlTelInput(phoneNumber, {
+    preferredCountries: ["et"],
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+  });
+
+  // var reset = function() {
+  //   phoneNumber.classList.remove("error");
+  //   errorMsg.innerHTML = "";
+  //   errorMsg.classList.add("hide");
+  //   validMsg.classList.add("hide");
+  // };
+
+  // on blur: validate
+  // phoneNumber.addEventListener('blur', function() {
+  //   reset();
+  //   if (phoneNumber.value.trim()) {
+  //     if (iti.isValidNumber()) {
+  //       validMsg.classList.remove("hide");
+  //     } else {
+  //       phoneNumber.classList.add("error");
+  //       var errorCode = iti.getValidationError();
+  //       errorMsg.innerHTML = errorMap[errorCode];
+  //       errorMsg.classList.remove("hide");
+  //     }
+  //   }
+  // });
+
+  // on keyup / change flag: reset
+  // phoneNumber.addEventListener('change', reset);
+  // phoneNumber.addEventListener('keyup', reset);
+
+  var alternativePhonenumber = document.querySelector("#student_student_address_attributes_telephone_number"),
+  errorMsgAlt = document.querySelector("#error-msg-alt"),
+  errorMsgAlt = document.querySelector("#error-msg-alt");
+  // here, the index maps to the error code returned from getValidationError - see readme
+  // var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+  // initialise plugin
+  var iti = window.intlTelInput(alternativePhonenumber, {
+    preferredCountries: ["et"],
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+  });
+
+  // var reset = function() {
+  //   alternativePhonenumber.classList.remove("error");
+  //   errorMsgAlt.innerHTML = "";
+  //   errorMsgAlt.classList.add("hide");
+  //   validMsg.classList.add("hide");
+  // };
+
+  // // on blur: validate
+  // alternativePhonenumber.addEventListener('blur', function() {
+  //   reset();
+  //   if (alternativePhonenumber.value.trim()) {
+  //     if (iti.isValidNumber()) {
+  //       validMsg.classList.remove("hide");
+  //     } else {
+  //       alternativePhonenumber.classList.add("error");
+  //       var errorCode = iti.getValidationError();
+  //       errorMsgAlt.innerHTML = errorMap[errorCode];
+  //       errorMsgAlt.classList.remove("hide");
+  //     }
+  //   }
+  // });
+
+  // on keyup / change flag: reset
+  // alternativePhonenumber.addEventListener('change', reset);
+  // alternativePhonenumber.addEventListener('keyup', reset);
+</script>

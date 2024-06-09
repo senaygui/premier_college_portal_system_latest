@@ -1,0 +1,64 @@
+<%provide(:title, "Payment History")%>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>My Invoices</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">Payments</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<div class="col-12 col-md-12">
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Payment History</h3>
+    </div>
+    <div class="card-body">
+      <table id='ordersTable' class='table table-striped table-sm'>
+        <thead>
+          <tr>
+            <th>Mode of Payment</th>
+            <th>Total Payement</th>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Remaining Amount</th>
+            <th>Paid Amount</th>
+            <th>Status</th>
+            <th>Invoices</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%@semesters.each do |sm|%>
+            <tr>
+              <td><%= sm.mode_of_payment %></td>
+              <td><%= (sm.total_price - sm.registration_fee) %> ETB</td>
+              <td><%= sm.year %></td>
+              <td><%= sm.semester %></td>
+              <td><%= sm.remaining_amount %> ETB</td>
+              <td><%= (sm.total_price - sm.registration_fee - sm.remaining_amount)%> ETB</td>
+              <%if sm.remaining_amount.zero? && sm.finance_approval_status=='approved'%>
+                <td><a class="ml-2 badge badge-success p-2 text-white">Completed</a></td>
+              <%elsif sm.is_back_invoice_created?%>
+                <td><a class="ml-2 badge badge-warning p-2 text-white">Waiting for approval</a></td>
+              <%else%>
+                <td>
+                  <%= link_to "Pay", prepare_payment_path(sm), :class => 'btn-sm btn-danger' %>
+                </td>
+              <%end%>
+              <!-- <td class="actions">
+                <%= link_to("View", invoice_path(sm), :class => 'btn-sm btn-primary') %>
+              </td> -->
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

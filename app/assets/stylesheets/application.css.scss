@@ -1,0 +1,180 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require flatpickr
+ *= require slideform.css
+ *= require_self
+ */
+@import "bootstrap";
+@import "datatables";
+@import "font-awesome";
+@import "adminlte";
+@import "OverlayScrollbars.min";
+@import "icheck-bootstrap.min";
+@import "bs-stepper.min";
+
+.profile-user-img {
+        width: 150px;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
+.avatar-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+}
+
+.avatar-upload .avatar-edit {
+        position: absolute;
+        right: 21px;
+        z-index: 1;
+        top: 150px;
+}
+
+.avatar-upload .avatar-edit input {
+        display: none;
+}
+
+.avatar-upload .avatar-edit input+label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #007bff;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+}
+
+.avatar-upload .avatar-edit input+label:hover {
+        background: red;
+        border-color: #d6d6d6;
+}
+
+.avatar-upload .avatar-edit input+label:after {
+        content: "\f040";
+        font-family: 'FontAwesome';
+        color: #FFF;
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+}
+
+.avatar-upload .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #F8F8F8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-upload .avatar-preview>div {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+}
+
+// file-upload
+
+.file-upload {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        width: 90%;
+}
+
+label.asdndzone {
+        max-width: 10000px !important;
+        padding-top: 80px;
+}
+
+.asdndz__icon-container {
+        text-align: center !important;
+}
+
+.no-recent-data {
+        height: 300px;
+        width: 100%;
+        text-align: center;
+        color: #999;
+        line-height: 300px;
+        font-size: 14px;
+        word-wrap: break-word;
+        font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/* transform input text in to captial letter */
+
+.cap {
+        text-transform: uppercase;
+}
+
+
+/* addmission radio button form */
+
+.student_program_id legend {
+        font-weight: 700;
+}
+
+.student_program_id .custom-control {
+        margin-bottom: 5px;
+        font-weight: 400 !important;
+}
+
+.student_program_id .custom-control-label {
+        font-weight: 400 !important;
+}
+
+p.declaration {
+        // font-size: 1.2rem;
+        // font-weight: 300;
+        line-height: 1.77778rem;
+        margin-bottom: 1.77778rem;
+        margin-top: 0;
+}
+
+.filter-container {
+        width: 50%;
+        margin: 0 auto;
+        padding: 15px;
+        display: flex;
+        margin-top: 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        -webkit-box-shadow: -1px 7px 15px -3px #000000;
+        box-shadow: -1px 7px 15px -3px #000000;
+}
+
+.filed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+}
+
+.filed label {
+        text-align: right;
+}

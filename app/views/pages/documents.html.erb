@@ -1,0 +1,275 @@
+<%provide(:title, "Documents")%>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Documents</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">Documents</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">My Documents</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Highschool Transcript</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <% if current_student.highschool_transcript.attached? %>
+                      <%if current_student.highschool_transcript.variable?%>
+                        <div class= "preview-card text-center no-recent-data" >
+                          <span> <%=link_to image_tag(current_student.highschool_transcript, size: '200x270'), current_student.highschool_transcript%></span>
+                        </div>
+                      <%elsif current_student.highschool_transcript.previewable?%>
+                        <div class= "preview-card text-center no-recent-data">
+                          <span> <%= link_to "View document", rails_blob_path(current_student.highschool_transcript, disposition: 'preview')%></span>
+                        </div>
+                      <%end%>
+                    <%else%>
+                      <%= simple_form_for(current_student, url: update_highschool_transcript_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :highschool_transcript, as: :file, label: "Add transcripts",class: 'form-control', input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                    <%if current_student.allow_editing?%>
+                      <%= simple_form_for(current_student, url: update_highschool_transcript_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :highschool_transcript, as: :file, label: "Add transcripts",class: 'form-control', input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Grade 10 Matric Certificate</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <% if current_student.grade_10_matric.attached? %>
+                      <%if current_student.grade_10_matric.variable?%>
+                        <div class= "preview-card text-center no-recent-data" >
+                          <span> <%=link_to image_tag(current_student.grade_10_matric, size: '200x270'), current_student.grade_10_matric%></span>
+                        </div>
+                      <%elsif current_student.grade_10_matric.previewable?%>
+                        <div class= "preview-card text-center no-recent-data">
+                          <span> <%= link_to "view document", rails_blob_path(current_student.grade_10_matric, disposition: 'preview') %></span>
+                        </div>
+                      <%end%>
+                    <%else%>
+                      <%= simple_form_for(current_student, url: update_grade_10_matric_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :grade_10_matric, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                    <% if current_student.allow_editing?%>
+                      <%= simple_form_for(current_student, url: update_grade_10_matric_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :grade_10_matric, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Grade 12 Matric Certificate</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <% if current_student.grade_12_matric.attached? %>
+                      <%if current_student.grade_12_matric.variable?%>
+                        <div class= "preview-card text-center no-recent-data" >
+                          <span> <%=link_to image_tag(current_student.grade_12_matric, size: '200x270'), current_student.grade_12_matric%></span>
+                        </div>
+                      <%elsif current_student.grade_12_matric.previewable?%>
+                        <div class= "preview-card text-center no-recent-data">
+                          <span> <%= link_to "view document", rails_blob_path(current_student.grade_12_matric, disposition: 'preview')%></span>
+                        </div>
+                      <%end%>
+                    <%else%>
+                      <%= simple_form_for(current_student, url: update_grade_12_matric_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :grade_12_matric, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                    <% if current_student.allow_editing?%>
+                      <%= simple_form_for(current_student, url: update_grade_12_matric_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :grade_12_matric, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+              <%if current_student.study_level.strip == "graduate"%>
+                <div class="col-12 col-md-3">
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Degree Certificate</h3>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <% if current_student.degree_certificate.attached? %>
+                        <div class= "preview-card text-center no-recent-data" >
+                          <span> <%=link_to "view document", rails_blob_path(current_student.degree_certificate, disposition: 'preview')%></span>
+                        </div>
+                        <%if current_student.degree_certificate.variable?%>
+                          <div class= "preview-card text-center no-recent-data" >
+                            <span> <%=link_to "view document", rails_blob_path(current_student.degree_certificate, disposition: 'preview')%></span>
+                          </div>
+                        <%elsif current_student.degree_certificate.previewable?%>
+                          <div class= "preview-card text-center no-recent-data">
+                            <span> <%= link_to "view document", rails_blob_path(current_student.degree_certificate, disposition: 'preview') %></span>
+                          </div>
+                        <%end%>
+                      <%else%>
+                        <%= simple_form_for(current_student, url: update_degree_certificate_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                          <div class="flex">
+                            <%= f.input :degree_certificate, as: :file, label: "Undergraduate degree certificate",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                          </div>
+                        <%end%>
+                      <%end%>
+                      <%if current_student.allow_editing?%>
+                        <%= simple_form_for(current_student, url: update_degree_certificate_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                          <div class="flex">
+                            <%= f.input :degree_certificate, as: :file, label: "Undergraduate degree certificate",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                          </div>
+                        <%end%>
+                      <%end%>
+                    </div>
+                  </div>
+                </div>
+              <%end%>
+              <div class="col-12 col-md-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">TVET/Diploma Certificate</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <% if current_student.diploma_certificate.attached? %>
+                      <%if current_student.diploma_certificate.variable?%>
+                        <div class= "preview-card text-center no-recent-data" >
+                          <span> <%=link_to image_tag(current_student.diploma_certificate, size: '200x270'), current_student.diploma_certificate%></span>
+                        </div>
+                      <%elsif current_student.diploma_certificate.previewable?%>
+                        <div class= "preview-card text-center no-recent-data">
+                          <span> <%= link_to "View document", rails_blob_path(current_student.diploma_certificate, disposition: 'preview')%></span>
+                        </div>
+                      <%end%>
+                    <%else%>
+                      <%= simple_form_for(current_student, url: update_diploma_certificate_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :diploma_certificate, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                    <%if current_student.allow_editing?%>
+                      <%= simple_form_for(current_student, url: update_diploma_certificate_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :diploma_certificate, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Certificate Of Competency</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <% if current_student.coc.attached? %>
+                      <%if current_student.coc.variable?%>
+                        <div class= "preview-card text-center no-recent-data" >
+                          <span> <%=link_to image_tag(current_student.coc, size: '200x270'), current_student.coc%></span>
+                        </div>
+                      <%elsif current_student.coc.previewable?%>
+                        <div class= "preview-card text-center no-recent-data">
+                          <span> <%= link_to "view document", rails_blob_path(current_student.coc, disposition: 'preview')%></span>
+                        </div>
+                      <%end%>
+                    <%else%>
+                      <%= simple_form_for(current_student, url: update_coc_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :coc, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                    <% if current_student.allow_editing?%>
+                      <%= simple_form_for(current_student, url: update_coc_path, wrapper: :input_group, method: :put,multiple: true) do |f| %>
+                        <div class="flex">
+                          <%= f.input :coc, as: :file, label: "Add transcripts",class: 'form-control',input_html: {onchange: 'this.form.submit()'}%>
+                        </div>
+                      <%end%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<style type="text/css">
+  .card-title{
+    font-size: 1rem;
+  }
+</style>

@@ -1,0 +1,521 @@
+<%provide(:title, "Sign Up")%>
+<style type="text/css">
+  * {box-sizing: border-box;}
+  .tab{display: none; width: 100%; height: 100%;margin: 0px auto;}
+  .current{display: block;}
+
+  body {background-color: #f1f1f1;}
+
+  /*form {background-color: #ffffff; margin: 100px auto; font-family: Raleway; padding: 40px;  }*/
+
+  h1 {text-align: center; }
+
+  /*input {padding: 10px; width: 100%; font-size: 17px; font-family: Raleway; border: 1px solid #aaaaaa; }*/
+
+  button {background-color: #4CAF50; color: #ffffff; border: none; padding: 10px 20px; font-size: 17px; font-family: Raleway; cursor: pointer; }
+
+  button:hover {opacity: 0.8; }
+
+  .previous {background-color: #bbbbbb; }
+
+  /* Make circles that indicate the steps of the form: */
+  .step {height: 30px; width: 30px; cursor: pointer; margin: 0 2px; color: #fff; background-color: #bbbbbb; border: none; border-radius: 50%; display: inline-block; opacity: 0.8; padding: 5px}
+
+  .step.active {opacity: 1; background-color: #69c769;}
+
+  .step.finish {background-color: #4CAF50; }
+
+  .error{
+    color: #f00;
+    display: block !important;
+    width: 100%;
+  }
+  .fix{
+    background: #f6f8fa !important;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="content-wrapper mt-3" style="min-height: 1477.62px;">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-edit"></i>
+                New Student Admission Forms
+              </h3>
+            </div>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),wrapper: :input_group, multiple: true) do |f| %>
+              <div class="card-body p-0">
+                <div class="">
+                  <div class="content m-3">
+                    <!-- your steps content here -->
+                    <div class="tab">
+                      <div class="row">
+                        <div class="col-12 col-md-3">
+                          <div class="row">
+                            <div class="col-12">
+                              <%= render "students/shared/error_messages", resource: resource %>
+                            </div>
+                            <div class="col-12">
+                              <div class="card  card-primary">
+                                <div class="card-header">
+                                  <h3 class="card-title">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    <strong>Instruction</strong>
+                                  </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                  <p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>
+                                  <p class="text-muted text-center">
+                                    You must provide your address information on the fields provided. Once you fill all the required feilds hit the Continue button.
+                                  </p>
+                                  <hr>
+                                </div>
+                                <!-- /.card-body -->
+                              </div>
+                              <div class="card  card-primary">
+                                <div class="card-header">
+                                  <h3 class="card-title">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    <strong>Photo Instruction</strong>
+                                  </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                  <p  class="text-center"><strong>We recommend you use a professional visa photo service to ensure your photo meets all the requirements.</strong></p>
+                                  <p class="text-muted text-center">
+                                    <ol class="text-muted">
+                                      <li>Taken within the last 6 months to reflect your current appearance</li>
+                                      <li>Taken in front of a plain white or off-white background</li>
+                                      <li>With a neutral facial expression and both eyes open</li>
+                                      <li>Taken in clothing that you normally wear on a daily basis</li>
+                                      <li>Do not wear a hat or head covering that obscures the hair or hairline, unless worn daily for a religious purpose. Your full face must be visible, and the head covering must not cast any shadows on your face.Headphones, wireless hands-free devices, or similar items are not acceptable in your photo.</li>
+                                    </ol>
+                                  </p>
+                                  <hr>
+                                </div>
+                                <!-- /.card-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Basic Information</strong>
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <%= render 'basic', f: f %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="admission" class="content tab">
+                      <div class="row">
+                        <div class="col-12 col-md-3">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Instruction</strong>
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>
+                              <p class="text-muted text-center">
+                                You must provide your address information on the fields provided. Once you fill all the required feilds hit the Continue button.
+                              </p>
+                              <hr>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Admission Information</strong>
+                              </h3>
+                            </div>
+                            <div class="card-body" style="min-height: 313px !important; ">
+                              <%= render 'admission', f: f%>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="address" class="content tab">
+                      <div class="row">
+                        <div class="col-12 col-md-3">
+                          <div class="card card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Instruction</strong>
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>
+                              <p class="text-muted text-center">
+                                You must provide your address information on the fields provided. Once you fill all the required feilds hit the Continue button.
+                              </p>
+                              <hr>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Contact Address</strong>
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <%= render 'address', f: f%>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="emergency" class="content tab">
+                      <div class="row">
+                        <div class="col-12 col-md-3">
+                          <div class="card card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Instruction</strong>
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>
+                              <p class="text-muted text-center">
+                                You must provide your address information on the fields provided. Once you fill all the required feilds hit the Continue button.
+                              </p>
+                              <hr>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Emergency Contact Person Information</strong>
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <%= render 'emergency', f: f%>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="school" class="content tab">
+                      <div class="row">
+                        <div class="col-12 col-md-3">
+                          <div class="card card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Instruction</strong>
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>
+                              <p class="text-muted text-center">
+                                You must provide your address information on the fields provided. Once you fill all the required feilds hit the Continue button.
+                              </p>
+                              <hr>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <!-- <strong>High School Information</strong> -->
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <%= render 'school', f: f %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="scan" class="content tab">
+                      <div class="row">
+                        <div class="col-12 col-md-3">
+                          <div class="card card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Instruction</strong>
+                              </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <p  class="text-center"><strong>Fill in the space(s) or Select the appropriate box(es) or selctions. * fields are required.</strong></p>
+                              <p class="text-muted text-center">
+                                Upload a scanned copy of all your relevant academic documents. You must include your <strong>grade 8,10,and 12 certifaces</strong>;your <strong>grade 9,10,11,and 12 transcripts</strong>,COC, TVET/Diploma certificate(if any). If you are applying for Postgraduate program,you must upload your <strong>Degree</strong> certificate.
+                              </p>
+                              <p class="text-muted text-center">file type allowed are pdf and image files</p>
+                              <hr>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                          <div class="card card-outline card-primary">
+                            <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Scan Document Uploading</strong>
+                              </h3>
+                            </div>
+                            <div class="card-body">
+                              <%= render 'document', f: f%>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <%= f.input :created_by, as: :hidden, :input_html => { :value => "self"}%>
+                  <%=f.input :year, as: :hidden, :input_html => { :value => 1}%>
+                  <%=f.input :semester, as: :hidden, :input_html => { :value => 1}%>
+                </div>
+              </div>
+              <div class="card-footer fix clearfix">
+                <div style="overflow:auto;">
+                  <div style="float:left; text-align:center; margin-top: 5px;">
+                    <span class="step">1</span>
+                    <span class="step">2</span>
+                    <span class="step">3</span>
+                    <span class="step">4</span>
+                    <span class="step">5</span>
+                    <span class="step">6</span>
+                  </div>
+                  <div class="mr-2" style="float:right; margin-top: 5px;">
+                    <button type="button" class="previous">Previous</button>
+                    <button type="button" class="next">Next</button>
+                    <button type="button" class="submit">Submit</button>
+                  </div>
+                </div>
+              </div>
+            <%end%>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" >
+  $(document).on('turbolinks:load', function(){
+     if(!localStorage.loaded) {
+        localStorage.setItem('loaded', 'yes')
+        window.location.reload();
+        
+      }
+    $.fn.multiStepForm = function(args) {
+        if(args === null || typeof args !== 'object' || $.isArray(args))
+          throw  " : Called with Invalid argument";
+        var form = this;
+        var tabs = form.find('.tab');
+        var steps = form.find('.step');
+        steps.each(function(i, e){
+          $(e).on('click', function(ev){
+          });
+        });
+        form.navigateTo = function (i) {/*index*/
+          /*Mark the current section with the class 'current'*/
+          tabs.removeClass('current').eq(i).addClass('current');
+          // Show only the navigation buttons that make sense for the current section:
+          form.find('.previous').toggle(i > 0);
+          atTheEnd = i >= tabs.length - 1;
+          form.find('.next').toggle(!atTheEnd);
+          // console.log('atTheEnd='+atTheEnd);
+          form.find('.submit').toggle(atTheEnd);
+          fixStepIndicator(curIndex());
+          return form;
+        }
+        function curIndex() {
+          /*Return the current index by looking at which section has the class 'current'*/
+          return tabs.index(tabs.filter('.current'));
+        }
+        function fixStepIndicator(n) {
+          steps.each(function(i, e){
+            i == n ? $(e).addClass('active') : $(e).removeClass('active');
+          });
+        }
+        /* Previous button is easy, just go back */
+        form.find('.previous').click(function() {
+          form.navigateTo(curIndex() - 1);
+        });
+
+        /* Next button goes forward iff current block validates */
+        form.find('.next').click(function() {
+          if('validations' in args && typeof args.validations === 'object' && !$.isArray(args.validations)){
+            if(!('noValidate' in args) || (typeof args.noValidate === 'boolean' && !args.noValidate)){
+              form.validate(args.validations);
+              if(form.valid() == true){
+                form.navigateTo(curIndex() + 1);
+                return true;
+              }
+              return false;
+            }
+          }
+          form.navigateTo(curIndex() + 1);
+        });
+        form.find('.submit').on('click', function(e){
+          if(typeof args.beforeSubmit !== 'undefined' && typeof args.beforeSubmit !== 'function')
+            args.beforeSubmit(form, this);
+          /*check if args.submit is set false if not then form.submit is not gonna run, if not set then will run by default*/
+          if(typeof args.submit === 'undefined' || (typeof args.submit === 'boolean' && args.submit)){
+            form.submit();
+          }
+          return form;
+        });
+        /*By default navigate to the tab 0, if it is being set using defaultStep property*/
+        typeof args.defaultStep === 'number' ? form.navigateTo(args.defaultStep) : null;
+
+        form.noValidate = function() {
+
+        }
+        return form;
+    };
+  })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function(){
+    var a = new Date().getFullYear() - 18
+    var b = a + "-15"
+    flatpickr('.birthdate',{
+      maxDate: b
+    });
+    // $('#student_photo').change(function (e) {
+    //   var files = [];
+    //   for (var i = 0; i < $(this)[0].files.length; i++) {
+    //       files.push($(this)[0].files[i].name);
+    //   }
+    //   $(this).next('.custom-file-label').html(files.join(', '));
+    // });
+    // $.validator.addMethod('date', function(value, element, param) {
+    //   return (value != 0) && (value <= 31) && (value == parseInt(value, 10));
+    // }, 'Please enter a valid date!');
+    // $.validator.addMethod('month', function(value, element, param) {
+    //   return (value != 0) && (value <= 12) && (value == parseInt(value, 10));
+    // }, 'Please enter a valid month!');
+    // $.validator.addMethod('year', function(value, element, param) {
+    //   return (value != 0) && (value >= 1900) && (value == parseInt(value, 10));
+    // }, 'Please enter a valid year not less than 1900!');
+    $.validator.addMethod('firstname', function(value, element, param) {
+      var nameRegex = /^[a-zA-Z0-9]+$/;
+      return value.match(nameRegex);
+    }, 'Only a-z, A-Z, 0-9 characters are allowed');
+    $.validator.addMethod('password', function(value, element, param) {
+      var nameRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
+      return value.match(nameRegex);
+    }, 'Must be between 5 to 20 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character');
+    var val = {
+        // Specify validation rules
+        rules: {
+          'student[photo]': {
+                required: true,
+              },
+        'student[date_of_birth]': {
+          required:true,
+        },
+        firstname:{
+          required:true,
+          minlength:8,
+        }, 
+        password:{
+          required:true,
+          minlength:8,
+        }
+        },
+        // Specify validation error messages
+        messages: {
+        'student[first_name]': "First name is required",
+        'student[last_name]': "Last name is required",
+        'student[middle_name]': "Middle name is required",
+        'student[email]': {
+          required:   "Email is required",
+          email:    "Please enter a valid e-mail",
+        },
+        phone:{
+          required:   "Phone number is requied",
+          minlength:  "Please enter 10 digit mobile number",
+          maxlength:  "Please enter 10 digit mobile number",
+          digits:   "Only numbers are allowed in this field"
+        },
+        date:{
+          required:   "Date is required",
+          minlength:  "Date should be a 2 digit number, e.i., 01 or 20",
+          maxlength:  "Date should be a 2 digit number, e.i., 01 or 20",
+          digits:   "Date should be a number"
+        },
+        month:{
+          required:   "Month is required",
+          minlength:  "Month should be a 2 digit number, e.i., 01 or 12",
+          maxlength:  "Month should be a 2 digit number, e.i., 01 or 12",
+          digits:   "Only numbers are allowed in this field"
+        },
+        year:{
+          required:   "Year is required",
+          minlength:  "Year should be a 4 digit number, e.i., 2018 or 1990",
+          maxlength:  "Year should be a 4 digit number, e.i., 2018 or 1990",
+          digits:   "Only numbers are allowed in this field"
+        },
+        username:{
+          required:   "Username is required",
+          minlength:  "Username should be minimum 4 characters",
+          maxlength:  "Username should be maximum 16 characters",
+        },
+        password:{
+          required:   "Password is required",
+          minlength:  "Password should be minimum 8 characters",
+          // maxlength:  "Password should be maximum 16 characters",
+        }
+        }
+    }
+    $("#new_student").multiStepForm(
+    {
+      // defaultStep:0,
+      beforeSubmit : function(form, submit){
+        console.log("called before submiting the form");
+        console.log(form);
+        console.log(submit);
+      },
+      validations:val,
+    }
+    ).navigateTo(0);
+  });
+</script>

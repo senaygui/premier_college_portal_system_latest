@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_breakdown: one
+  assessment_title: MyString
+  asssessment_weight: 9.99
+
+two:
+  course_breakdown: two
+  assessment_title: MyString
+  asssessment_weight: 9.99

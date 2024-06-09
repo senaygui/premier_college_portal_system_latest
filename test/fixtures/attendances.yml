@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program: one
+  course_section: one
+  course_title: MyString
+  attendance_title: MyString
+  academic_calendar: one
+  year: 1
+  semester: 1
+  created_by: MyString
+  updated_by: MyString
+
+two:
+  program: two
+  course_section: two
+  course_title: MyString
+  attendance_title: MyString
+  academic_calendar: two
+  year: 1
+  semester: 1
+  created_by: MyString
+  updated_by: MyString

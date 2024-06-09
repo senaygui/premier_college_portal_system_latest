@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attendance: one
+  starting_date: 2022-04-01 08:08:58
+  ending_date: 2022-04-01 08:08:58
+  session_title: MyString
+  academic_calendar: one
+  created_by: MyString
+  updated_by: MyString
+
+two:
+  attendance: two
+  starting_date: 2022-04-01 08:08:58
+  ending_date: 2022-04-01 08:08:58
+  session_title: MyString
+  academic_calendar: two
+  created_by: MyString
+  updated_by: MyString

@@ -1,0 +1,38 @@
+<div class="mx-5">
+  <h1>New Invoice</h1>
+  <%= simple_form_for(@invoice, url: create_invoice_for_remaining_amount_path) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%if @semester_registration.semester==current_student.semester && @semester_registration.year == current_student.year%>
+      <i class="border border-info p-2 text-info" role="alert">You can pay with the range of <b class="text-danger"><%=@semester_registration.actual_payment%> ETB</b>  to <b class="text-danger"><%=@semester_registration.remaining_amount%> ETB</b> </i>
+      <br/>
+      <br/>
+      <div class="form-inputs">
+        <%= f.input :total_price, input_html:{value: @semester_registration.actual_payment, min: 54, step: 2}, :required=>true%>
+        <i class="text-success float-right"></i>
+      </div>
+    <%else%>
+      <i class="border border-info p-2 text-info">This is unpaid payment from year <b class="text-danger"><%= @semester_registration.year%>, semester <%=@semester_registration.semester%> </b>, so you are expected to pay <b class="text-danger"><%=@semester_registration.remaining_amount%> ETB</b></i>
+     <br/>
+     <br/>
+
+      <div class="form-inputs">
+        <%= f.input :total_price, input_html:{value: @semester_registration.remaining_amount}, readonly: true%>
+      </div>
+    <%end%>
+    <%= f.input :semester_registration_id,as: :hidden, input_html: {value: @semester_registration.id}%>
+    <%= f.input :student_id, as: :hidden, input_html: { value: @semester_registration.student_id}%>
+    <%= f.input :department_id,as: :hidden, input_html: { value: @semester_registration.department_id}%>
+    <%= f.input :program_id, as: :hidden,input_html: {value: @semester_registration.program_id}%>
+    <%= f.input :academic_calendar_id,as: :hidden, input_html: {value: @semester_registration.academic_calendar_id}%>
+    <%= f.input :year, as: :hidden,input_html: { value: @semester_registration.year}%>
+    <%= f.input :semester, as: :hidden,input_html: { value: @semester_registration.semester}%>
+    <%= f.input :last_updated_by,as: :hidden, input_html: { value: @semester_registration.last_updated_by}%>
+    <%= f.input :invoice_status, as: :hidden,input_html: {value: "pending"}%>
+    <%= f.input :invoice_number, as: :hidden,input_html: { value: SecureRandom.random_number(10000000)}%>
+    <%= f.input :semester, as: :hidden,input_html: { value: @semester_registration.semester}%>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>

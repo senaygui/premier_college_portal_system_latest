@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  module_title: MyString
+  department: one
+  module_code: MyString
+  overview: MyText
+  description: MyText
+
+two:
+  module_title: MyString
+  department: two
+  module_code: MyString
+  overview: MyText
+  description: MyText

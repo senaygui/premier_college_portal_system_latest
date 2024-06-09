@@ -1,0 +1,18 @@
+<tr class="form-table__row">
+  <td class="form-table__col">
+    <%= d.input :course_id, as: :search_select, url: proc { admin_courses_path },
+           fields: [:course_title, :id], display_name: 'course_title', minimum_input_length: 2,
+           order_by: 'created_at_asc', label: false, :input_html => { :disabled => true }  , wrapper_html: { tag: false }%>
+  </td>
+  <td class="form-table__col">
+    <%= d.input(:add_or_drop, as: :string, label: false, :input_html => { :disabled => true, class: "text-center", style: "font-weight: bold; text-transform: uppercase;" }, wrapper_html: { tag: false }) %>
+  </td>
+  <td class="form-table__col">
+    <%= d.input :advisor_approval, as: :select, label: false, :collection => ["pending","approved", "denied"], :include_blank => false, wrapper_html: { tag: false } %>
+  </td>  
+  <td class="form-table__col">
+    <%= d.input :advisor_name, as: :hidden, :input_html => { :value => current_admin_user.name.full}, wrapper_html: { tag: false } %>
+    <%= d.input :advisor_date_of_response, as: :hidden, :input_html => { :value => Time.zone.now}, wrapper_html: { tag: false } %>
+    <%= d.input :id, as: :hidden, label: '', wrapper_html: { tag: false } %>
+  </td>
+</tr>

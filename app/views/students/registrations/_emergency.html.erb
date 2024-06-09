@@ -1,0 +1,84 @@
+<%= f.fields_for :emergency_contact  do |a|%>
+  <div class="row">
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :full_name, input_html: { class: 'form-control', autocomplete: "full_name", id: "contactname" },placeholder: "Full name", required: true, label: "Contact Person Fullname" %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :relationship, as: :select, :collection => ["Husband", "Wife", "Father", "Mother", "Legal guardian","Son","Daughter","Brother","Sister", "Friend","Uncle","Aunt","Cousin","Nephew","Niece","Grandparent"], input_html: {class: "form-control custom-select"}, required: true, label: "Contact Person Relationship" %>
+    </div>
+    <div class="col-12 col-md-6 form-group">
+      <%= a.input :cell_phone, input_html: { class: 'form-control', id: "contactphone"}, required: true, label: "Contact Person PhoneNumber"  %>
+      <span id="valid-msg-cell-phone" class="hide"></span>
+      <span id="error-msg-cell-phone" class="hide"></span>
+    </div>
+    
+    
+    <!-- <div class="col-12 col-md-6 form-group">
+      <%= a.input :current_occupation, input_html: { class: 'form-control', autocomplete: "current_occupation" },placeholder: "Current occupation", label: "Contact Person Current Occupation" %>
+
+    </div> -->
+
+   <!-- <div class="col-12 col-md-6 form-group">
+      <%= a.input :name_of_current_employer, input_html: { class: 'form-control', autocomplete: "name_of_current_employer" },placeholder: "Name of current employer" %>
+      <%= f.hint "Contact person current employer name"%>
+    </div> -->
+
+    <!-- <div class="col-12 col-md-6 form-group">
+      <%= a.input :email_of_employer, input_html: { class: 'form-control', autocomplete: "email_of_employer" },placeholder: "Contact person email"%>
+      <%= f.hint "Contact person email"%>
+    </div> -->
+
+    <!-- <div class="col-12 col-md-6 form-group">
+      <%= a.input :office_phone_number, input_html: { class: 'form-control' },placeholder: "office phone number", label: "Employer Phone Number"%>
+      <%= f.hint "Contact person current employer phone number"%>
+    </div> -->
+
+    <!-- <div class="col-12 col-md-6 form-group">
+      <%= a.input :pobox, input_html: { class: 'form-control', autocomplete: "pobox" },placeholder: "Pobox" %>
+    </div> -->
+
+  </div>
+<%end%>
+
+<script >
+
+  var cellPhone = document.querySelector("#student_emergency_contact_attributes_cell_phone"),
+  errorMsgCellPhone = document.querySelector("#error-msg-cell-phone"),
+  validMsgCellPhone = document.querySelector("#valid-msg-cell-phone");
+  // here, the index maps to the error code returned from getValidationError - see readme
+  var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+  // initialise plugin
+  var iti = window.intlTelInput(cellPhone, {
+    preferredCountries: ["et"],
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+  });
+
+  var reset = function() {
+    cellPhone.classList.remove("error");
+    errorMsgCellPhone.innerHTML = "";
+    errorMsgCellPhone.classList.add("hide");
+    validMsgCellPhone.classList.add("hide");
+  };
+
+  // on blur: validate
+  // cellPhone.addEventListener('blur', function() {
+  //   reset();
+  //   if (cellPhone.value.trim()) {
+  //     if (iti.isValidNumber()) {
+  //       validMsgCellPhone.classList.remove("hide");
+  //     } else {
+  //       cellPhone.classList.add("error");
+  //       var errorCode = iti.getValidationError();
+  //       errorMsgCellPhone.innerHTML = errorMap[errorCode];
+  //       errorMsgCellPhone.classList.remove("hide");
+  //     }
+  //   }
+  // });
+
+  // // on keyup / change flag: reset
+  // cellPhone.addEventListener('change', reset);
+  // cellPhone.addEventListener('keyup', reset);
+
+
+</script>

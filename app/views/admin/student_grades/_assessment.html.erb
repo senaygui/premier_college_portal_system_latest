@@ -1,0 +1,21 @@
+<tr class="form-table__row">
+  
+  <td class="form-table__col">
+    <% a.input :assessment_plan_id, as: :search_select, url: proc { admin_assessment_plans_path },
+           fields: [:assessment_weight, :id], display_name: 'assessment_weight', minimum_input_length: 2,
+           order_by: 'created_at_asc', label: false, :input_html => { :disabled => true }  , wrapper_html: { tag: false }%>
+  </td>  
+  <td class="form-table__col">
+    <% a.input :assessment_plan_id, as: :search_select, url: proc { admin_assessment_plans_path },
+           fields: [:assessment_title, :id], display_name: 'assessment_title', minimum_input_length: 2,
+           order_by: 'created_at_asc', label: '', label: false, :input_html => { :disabled => true }  , wrapper_html: { tag: false }%>
+  </td>  
+  <td class="form-table__col">
+    <% a.input :result, as: :number, label: '', label: false, wrapper_html: { tag: false } %>
+  </td> 
+  <td class="form-table__col">
+    <% a.input :updated_by, as: :hidden, :input_html => { :value => current_admin_user.name.full}, label: '', wrapper_html: { tag: false }%>
+    <% a.input :id, as: :hidden, label: '', wrapper_html: { tag: false } %>
+    <% a.input :_destroy, as: :hidden, label: '', wrapper_html: { tag: false } %>
+  </td>            
+</tr>

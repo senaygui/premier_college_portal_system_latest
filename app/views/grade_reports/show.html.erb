@@ -1,0 +1,114 @@
+<p id="notice"><%= notice %></p>
+
+<%provide(:title, "semester_registration")%>
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>My Grade Report</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item active">Grade Report</li>
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+    	<div class="col-12 col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Slip Information</h3>
+          </div>
+          <div class="card-body">
+          	<div class="row">
+	          	<div class="col-12 col-md-6">
+	          		<ul class="list-group list-group-unbordered mb-3">
+		              <li class="list-group-item mx-3">
+		                <b>Student Fullname</b> <a class="text-muted float-right"><%= current_student.name.full.upcase%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Student ID</b> <a class="text-muted float-right"><%= current_student.student_id.present? ? current_student.student_id : "Not Assigned Yet"%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Prorgam</b> <a class="text-muted float-right"><%= current_student.program.program_name%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Admission Type</b> <a class="text-muted float-right"><%= current_student.admission_type%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Academic Year</b> <a class="text-muted float-right"><%= AcademicCalendar.last.calender_year%></a>
+		              </li>
+		              
+		              
+		            </ul>
+	          	</div>
+	          	<div class="col-12 col-md-6">
+	          		<ul class="list-group list-group-unbordered mb-3">
+	          			<li class="list-group-item mx-3">
+		                <b>Study Level</b> <a class="text-muted float-right"><%= current_student.study_level%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Year</b> <a class="text-muted float-right"><%= current_student.year%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Semester</b> <a class="text-muted float-right"><%= current_student.semester%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>SGPA</b> <a class="text-muted float-right"><%= @grade_report.sgpa%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>CGPA</b> <a class="text-muted float-right"><%= @grade_report.cgpa%></a>
+		              </li>
+		              <li class="list-group-item mx-3">
+		                <b>Academic Status</b> <a class="text-muted float-right"><%= @grade_report.academic_status%></a>
+		              </li>
+		            </ul>
+	          	</div>
+          	</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Enrolled Courses</h3>
+          </div>
+          <div class="card-body">
+          	<table id='ordersTable' class='table table-striped table-sm'>
+						  <thead>
+						    <tr>
+						      <th>Course Title</th>
+						      <th>Module Code</th>
+						      <th>Course Code</th>
+						      <th>Credit Hour</th>
+						      <th>Grade</th>
+						    </tr>
+						  </thead>
+
+						  <tbody>
+						    <% @grade_report.semester_registration.course_registrations.where(enrollment_status: 'enrolled', student: current_student).each do |grade_report_course| %>
+						      <tr>     
+						        <td><%= grade_report_course.course.course_title %></td>
+						        <td><%= grade_report_course.course.course_module.module_code %></td>
+						        <td><%= grade_report_course.course.course_code %></td>
+						        <td><%= grade_report_course.course.credit_hour %></td>
+						        <td><%= grade_report_course.student_grade.letter_grade %></td>
+						      </tr>
+						    <% end %>
+						  </tbody>
+						</table>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<%= link_to 'Back', grade_reports_path %>

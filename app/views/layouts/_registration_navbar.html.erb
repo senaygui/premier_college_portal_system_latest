@@ -1,0 +1,29 @@
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <div class="container-fluid"> 
+    <%= link_to image_tag("premier.jpg", size: "142x55", alt: "logo"), root_path, class: "navbar-brand"%>
+    
+    <!-- right navbar links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <!-- <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li> -->
+        <li class="nav-item"> 
+          <strong> <%= link_to "Sign in", new_student_session_path, class: "nav-link" if !current_page?(new_student_registration_path) %></strong>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block"> 
+          <%if current_page?(new_student_registration_path)%>
+            <strong><%= link_to "Sign in", new_student_session_path, class: "nav-link"%> </strong> 
+          <%elsif current_page?(new_student_session_path)%>
+            <strong><%= link_to "Register Now", admission_path, class: "nav-link"%> </strong> 
+          <%end%>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div> 
+</nav>

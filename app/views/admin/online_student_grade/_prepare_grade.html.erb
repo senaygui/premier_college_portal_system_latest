@@ -1,0 +1,28 @@
+<div class="panel_contents">
+  <% if flash[:success] %>
+    <div class="alert alert-success">
+      <%= flash[:success] %>
+    </div>
+  <% end %>
+  <form method="get" id="q_search" class="filter_form" action="/prepare/online/student/grade" accept-charset="UTF-8">
+    <div class="filter_form_field">
+      <label for="student-year" class="label">Select Year:</label>
+      <select name="year" id="online-year" required class="form-select form-select-lg mb-3">
+        <option value="">Select year</option>
+        <option value="1">Year 1</option>
+        <option value="2">Year 2</option>
+        
+
+      </select>
+    </div>
+    <div class="filter_form_field">
+      <label for="student-semester" class="label">Select Semester:</label>
+      <select name="semester" id="online-semester" required class="form-select form-select-lg mb-3">
+        <option value=""> Select Semester</option>
+        <option value="1"> Semester 1</option>
+        <option value="2">Semester 2</option>
+      </select>
+    </div>
+    <input type="submit" value="Import Grade" name="commit" id="q_submit" />
+  </form>
+</div>

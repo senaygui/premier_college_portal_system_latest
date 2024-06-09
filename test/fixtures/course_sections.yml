@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section_short_name: MyString
+  section_full_namee: MyString
+  course_breakdown: one
+  course_title: MyString
+  total_capacity: 1
+
+two:
+  section_short_name: MyString
+  section_full_namee: MyString
+  course_breakdown: two
+  course_title: MyString
+  total_capacity: 1

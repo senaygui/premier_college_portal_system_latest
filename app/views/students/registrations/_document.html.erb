@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-12 col-md-6 form-group">
+    <%= f.input :highschool_transcript, as: :file, label: "Grade 9, 10, 11,and 12 transcripts",class: 'form-control'%>
+  </div>
+  <div class="col-12 col-md-6 form-group">
+    <%= f.input :grade_10_matric, as: :file, label: "Grade 10 matric certificate",class: 'form-control'%>
+  </div>
+  <div class="col-12 col-md-6 form-group">
+    <%= f.input :grade_12_matric, as: :file, label: "Grade 12 matric certificate",class: 'form-control'%>
+  </div>
+  <div class="col-12 col-md-6 form-group">
+    <%= f.input :coc, as: :file, label: "Certificate of competency (COC)",class: 'form-control'%>
+  </div>
+  <div class="col-12 col-md-6 form-group">
+    <%= f.input :diploma_certificate, as: :file, label: "GAT certificate",class: 'form-control'%>
+  </div>
+  <%if params[:study_level] == "graduate"%>
+    <div class="col-12 col-md-6 form-group">
+      <%= f.input :degree_certificate, as: :file, label: "Undergraduate degree certificate",class: 'form-control', required: true%>
+    </div>
+  <%end%>
+  <div class="col-12 col-md-12 form-group">
+    <strong>Declaration by the Applicant (**)</strong>
+    <p>
+      <div class="mb-3 form-check">
+        <input id="checkbox1" type="checkbox" class="form-check-input " id="exampleCheck1">
+        <label class="form-check-label text-bold declaration" for="exampleCheck1" >
+          Please check this box if you are applying with a temporary degree certificate. I acknowledge that it's my responsiblity to bring my GAT Certificate. And Original degree within four months since the day of my registration. I accept the terms and condition of premier and understand that i will not recive any grade report or offical documentation from Premier College.        
+          </label>
+      </div>
+    </p>
+  </div>
+  <!-- <div class="col-12 col-md-12 form-group">
+	  <input id="checkbox1" type="checkbox" class="form-check-input" id="exampleCheck1">
+		<label class="form-check-label text-muted" for="exampleCheck1">By proceeding, I agree that all the attached documents are mine and authentic.</label>
+	</div> -->
+</div>
+<style>
+  .custom-file-label::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      display: block;
+      height: 2.25rem;
+      padding: 0.375rem 0.75rem;
+      line-height: 1.5;
+      color: #fff;
+      background: #77cc6d !important;
+      content: "Upload File";
+      background-color: #e9ecef;
+      border-left: inherit;
+      border-radius: 0 0.25rem 0.25rem 0;
+      border-radius: 3px;
+      	-webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
+        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
+  }
+</style>
+<script type="text/javascript">
+  $('#student_highschool_transcript').change(function (e) {
+      var files = [];
+      for (var i = 0; i < $(this)[0].files.length; i++) {
+          files.push($(this)[0].files[i].name);
+      }
+      $(this).next('.custom-file-label').html(files.join(', '));
+  });
+  $('#student_grade_10_matric').change(function (e) {
+      var files = [];
+      for (var i = 0; i < $(this)[0].files.length; i++) {
+          files.push($(this)[0].files[i].name);
+      }
+      $(this).next('.custom-file-label').html(files.join(', '));
+  });
+  $('#student_grade_12_matric').change(function (e) {
+      var files = [];
+      for (var i = 0; i < $(this)[0].files.length; i++) {
+          files.push($(this)[0].files[i].name);
+      }
+      $(this).next('.custom-file-label').html(files.join(', '));
+  });
+  $('#student_coc').change(function (e) {
+      var files = [];
+      for (var i = 0; i < $(this)[0].files.length; i++) {
+          files.push($(this)[0].files[i].name);
+      }
+      $(this).next('.custom-file-label').html(files.join(', '));
+  });
+  $('#student_diploma_certificate').change(function (e) {
+      var files = [];
+      for (var i = 0; i < $(this)[0].files.length; i++) {
+          files.push($(this)[0].files[i].name);
+      }
+      $(this).next('.custom-file-label').html(files.join(', '));
+  });
+  $('#student_degree_certificate').change(function (e) {
+      var files = [];
+      for (var i = 0; i < $(this)[0].files.length; i++) {
+          files.push($(this)[0].files[i].name);
+      }
+      $(this).next('.custom-file-label').html(files.join(', '));
+  });
+</script>
