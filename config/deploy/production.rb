@@ -1,13 +1,13 @@
 # server '148.113.8.52', user: 'deploy', roles: %w{app db web}
 
-role :app, %w{newdeploy@51.68.161.6}
-role :web, %w{newdeploy@51.68.161.6}
-role :db, %w{newdeploy@51.68.161.6}, :primary => true
+role :app, %w{deploy@87.98.245.128}
+role :web, %w{deploy@87.98.245.128}
+role :db, %w{deploy@87.98.245.128}, :primary => true
 
-set :branch, "premier"
+set :branch, "master"
 set :rails_env, "production"
 
-set :deploy_to, '/home/newdeploy/premiernew' 
+set :deploy_to, '/home/deploy/premier_portal' 
 
 # server-based syntax
 # ======================
