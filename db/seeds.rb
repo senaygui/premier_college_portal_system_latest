@@ -11,7 +11,7 @@
 AdminUser.create!(first_name: "fenet",   last_name: "Assefa",
 									email: "admin3@gmail.com", 
 									password: "1234567",  
-									role: "admin") 
+									role: "admin") if Rails.env.development?
 AdminUser.create!(first_name: "#{Rails.application.credentials.production[:first_name]}",   
 	               last_name: "#{Rails.application.credentials.production[:last_name]}",
  				   email: "#{Rails.application.credentials.production[:admin_email]}", 
